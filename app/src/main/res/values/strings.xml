@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">HearingScreening</string>
+    <string name="menu_text">Din \"work-in-progress\" hørescreenings app</string>
+    <string name="menu_button1_text">Hvordan tager jeg testen?</string>
+    <string name="menu_button2_text">Start test</string>
+    <string name="menu_button3_text">Resultater</string>
+    <string name="menu_button4_text">Indstillinger</string>
+    <string name="splash_screen_text">Læs venligst \n\"Hvordan tager jeg testen?\" \nInden du går i gang</string>
+    <string name="HowTo_screen_text1">Før du går i gang skal du sørge for at:
+        \n\u2022 Foretage testen indendørs ved stuetemperatur (21\u2103-25\u2103)
+        \n\u2022 Hej
+    </string>
+    <string name="HowTo_screen_text2">
+        Når du trykker på knappen \"Start Test\" starter en ny høre test
+    </string>
+    <string name="title_activity_test2">Test2Activity</string>
+</resources>
