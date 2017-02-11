@@ -19,10 +19,12 @@
         <activity android:name=".HowToActivity" />
         <activity android:name=".HowTo2Activity" />
         <activity android:name=".Test1Activity" />
+        <activity android:name=".ResultsActivity" />
         <activity
             android:name=".Test2Activity"
             android:label="@string/title_activity_test2"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SettingsActivity"></activity>
     </application>
 
 </manifest>
