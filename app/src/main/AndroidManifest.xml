@@ -25,8 +25,9 @@
             android:label="@string/title_activity_test2"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ResultsActivity" />
-      <activity android:name=".EarlierResultsActivity"></activity>
-        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".EarlierResultsActivity" />
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".SendResultsActivity"></activity>
     </application>
 
 </manifest>

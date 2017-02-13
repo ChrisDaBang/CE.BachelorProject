@@ -37,5 +37,15 @@ public class ResultsActivity extends AppCompatActivity {
                 ResultsActivity.this.finish();
             }
         });
+
+        findViewById(R.id.results_latest_send).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent mainIntent = new Intent(getApplicationContext(), SendResultsActivity.class);
+                ResultsActivity.this.startActivity(mainIntent);
+                ResultsActivity.this.finish();
+            }
+        });
     }
 }

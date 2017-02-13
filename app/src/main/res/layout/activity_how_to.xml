@@ -34,9 +34,7 @@
         android:textSize="16pt"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignStart="@+id/HowTo_Back"
         android:id="@+id/textView3"
-        android:layout_alignEnd="@+id/HowTo_Next"
-        android:layout_marginBottom="80dp"
-        />
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/HowTo_Back" />
 </RelativeLayout>
