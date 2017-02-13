@@ -27,7 +27,7 @@
         android:layout_alignTop="@+id/button"
         android:layout_toStartOf="@+id/button"
         android:layout_marginEnd="22dp"
-        android:id="@+id/button2" />
+        android:id="@+id/test1buttonyes" />
 
     <TextView
         android:text="Der afspilles en tone"

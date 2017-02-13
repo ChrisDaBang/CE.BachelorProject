@@ -1,6 +1,7 @@
 package student.sdu.hearingscreening;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +40,9 @@ public class ExpandableListAdapterTest extends BaseExpandableListAdapter {
         if(row == null) {
             row = new TextView(context);
         }
-        row.setText(contents[groupPosition][childPosition]);
+        row.setText("\t\t"+contents[groupPosition][childPosition]);
+        row.setTextSize(20);
+        row.setTextColor(Color.BLACK);
         return row;
     }
     @Override
@@ -65,7 +68,16 @@ public class ExpandableListAdapterTest extends BaseExpandableListAdapter {
         if(row == null) {
             row = new TextView(context);
         }
+        if(isExpanded) {
+            row.setCompoundDrawablesWithIntrinsicBounds(
+                    R.mipmap.arrow_down, 0, 0, 0);
+        } else{
+            row.setCompoundDrawablesWithIntrinsicBounds(
+                    R.mipmap.arrow_right, 0, 0, 0);
+        }
         row.setTypeface(Typeface.DEFAULT_BOLD);
+        row.setTextSize(30);
+        row.setTextColor(Color.BLACK);
         row.setText(tests[groupPosition]);
         return row;
     }
