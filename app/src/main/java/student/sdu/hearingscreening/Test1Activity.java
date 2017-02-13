@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.Button;
 
 import java.io.File;
+import java.io.FileDescriptor;
+import java.io.IOException;
 import java.util.Random;
 
 import static android.media.AudioManager.STREAM_MUSIC;
@@ -21,6 +23,7 @@ import static android.media.AudioManager.STREAM_MUSIC;
 public class Test1Activity extends AppCompatActivity {
     int presses = 0;
     int[] files;
+    MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,7 @@ public class Test1Activity extends AppCompatActivity {
         setupTracks();
         setContentView(R.layout.activity_test1);
         Button but = (Button)findViewById(R.id.test1buttonyes);
+        mp = MediaPlayer.create(getApplicationContext(), files[0]);
         but.setOnClickListener(
             new View.OnClickListener() {
                 @Override
@@ -37,8 +41,9 @@ public class Test1Activity extends AppCompatActivity {
             });
     }
     private void playSound() {
+        if(!mp.isPlaying()) {
         if(presses<files.length) {
-            MediaPlayer mp = MediaPlayer.create(Test1Activity.this, files[presses]);
+            mp = MediaPlayer.create(Test1Activity.this, files[presses]);
             Random rand = new Random();
             if(rand.nextBoolean()) {
                 mp.setVolume(0, 1);
@@ -53,6 +58,7 @@ public class Test1Activity extends AppCompatActivity {
             Test1Activity.this.finish(); //Should you finish? Who knows
         }
         }
+    }
     private void setupTracks() {
         files = new int[8];
         files[0] = R.raw.twohundredfifty;
