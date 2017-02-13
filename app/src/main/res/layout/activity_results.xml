@@ -10,4 +10,49 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="student.sdu.hearingscreening.ResultsActivity">
 
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/results_latest_textview" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/results_latest_textview"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="63dp"
+        android:id="@+id/results_latest_change_textview" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/results_latest_change_textview"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="48dp"
+        android:id="@+id/results_latest_suggest_textview" />
+
+    <Button
+        android:text="@string/result_latest_send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="31dp"
+        android:height="100dp"
+        android:id="@+id/results_latest_send" />
+
+    <Button
+        android:text="@string/result_latest_earlier"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/result_latest_earlier_button"
+        android:height="100dp"
+        android:layout_above="@+id/results_latest_send"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="18dp" />
 </RelativeLayout>
