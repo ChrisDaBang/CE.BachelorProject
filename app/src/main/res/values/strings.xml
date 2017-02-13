@@ -22,4 +22,5 @@
         <item>3;10/02/2017;normal hørelse;ingen ændring;forsæt med brug af app</item>
         <item>4;11/02/2017;normal hørelse;ingen ændring;forsæt med brug af app</item>
     </string-array>
+    <string name="settings_buttonReminder_text">Set test days per week</string>
 </resources>
