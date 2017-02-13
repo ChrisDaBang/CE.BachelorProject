@@ -22,7 +22,9 @@
         <activity
             android:name=".Test2Activity"
             android:label="@string/title_activity_test2"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ResultsActivity" />
+        <activity android:name=".EarlierResultsActivity"></activity>
     </application>
 
 </manifest>
