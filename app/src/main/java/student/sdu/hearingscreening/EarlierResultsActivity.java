@@ -20,10 +20,10 @@ public class EarlierResultsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_earlier_results);
-        dostuff();
+        setupListView();
     }
 
-    private void dostuff() {
+    private void setupListView() {
         ExpandableListView lv = (ExpandableListView) findViewById(R.id.earlier_results_exp);
         lv.setGroupIndicator(null);
         lv.setChildIndicator(null);
