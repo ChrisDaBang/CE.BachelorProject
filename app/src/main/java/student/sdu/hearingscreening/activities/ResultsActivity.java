@@ -1,4 +1,4 @@
-package student.sdu.hearingscreening;
+package student.sdu.hearingscreening.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import student.sdu.hearingscreening.R;
 
 public class ResultsActivity extends AppCompatActivity {
 
@@ -17,17 +19,17 @@ public class ResultsActivity extends AppCompatActivity {
         setupButtons();
     }
     private void setupTextViews() {
-        TextView t = (TextView) findViewById(R.id.results_latest_textview);
+        TextView t = (TextView) findViewById(R.id.tv_latest);
         String[] tests = getResources().getStringArray(R.array.tests);
         String[] result = tests[tests.length-1].split(";");
         t.setText("Seneste resultat: " + result[2]);
-        t = (TextView) findViewById(R.id.results_latest_suggest_textview);
+        t = (TextView) findViewById(R.id.tv_latest_suggest);
         t.setText("Ændring i hørelse: " + result[4]);
-        t = (TextView) findViewById(R.id.results_latest_change_textview);
+        t = (TextView) findViewById(R.id.tv_latest_change);
         t.setText("Forslag: " + result[3]);
     }
     private void setupButtons() {
-        Button btn = (Button) findViewById(R.id.result_latest_earlier_button);
+        Button btn = (Button) findViewById(R.id.btn_earlier_results);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -38,7 +40,7 @@ public class ResultsActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.results_latest_send).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_send_results).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {

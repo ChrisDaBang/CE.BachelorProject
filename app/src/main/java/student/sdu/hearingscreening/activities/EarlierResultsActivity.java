@@ -1,17 +1,11 @@
-package student.sdu.hearingscreening;
+package student.sdu.hearingscreening.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.widget.ExpandableListView;
-import android.widget.SimpleExpandableListAdapter;
-import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import student.sdu.hearingscreening.R;
+import student.sdu.hearingscreening.adapters.EarlierResultsListAdapter;
 
 public class EarlierResultsActivity extends AppCompatActivity {
 
@@ -24,7 +18,7 @@ public class EarlierResultsActivity extends AppCompatActivity {
     }
 
     private void setupListView() {
-        ExpandableListView lv = (ExpandableListView) findViewById(R.id.earlier_results_exp);
+        ExpandableListView lv = (ExpandableListView) findViewById(R.id.elv_results);
         lv.setGroupIndicator(null);
         lv.setChildIndicator(null);
         String[] tests = getResources().getStringArray(R.array.tests);
@@ -47,7 +41,7 @@ public class EarlierResultsActivity extends AppCompatActivity {
             }
             contents[i] = temp2;
         }
-        ExpandableListAdapterTest la  = new ExpandableListAdapterTest(this, contents, titles);
+        EarlierResultsListAdapter la  = new EarlierResultsListAdapter(this, contents, titles);
         lv.setAdapter(la);
     }
 

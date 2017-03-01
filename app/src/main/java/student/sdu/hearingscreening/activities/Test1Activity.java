@@ -1,24 +1,15 @@
-package student.sdu.hearingscreening;
+package student.sdu.hearingscreening.activities;
 
 import android.content.Intent;
-import android.media.AudioFormat;
-import android.media.AudioManager;
-import android.media.AudioTrack;
 import android.media.MediaPlayer;
-import android.media.ToneGenerator;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
-import java.io.File;
-import java.io.FileDescriptor;
-import java.io.IOException;
 import java.util.Random;
 
-import static android.media.AudioManager.STREAM_MUSIC;
+import student.sdu.hearingscreening.R;
 
 public class Test1Activity extends AppCompatActivity {
     int presses = 0;
@@ -30,7 +21,7 @@ public class Test1Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setupTracks();
         setContentView(R.layout.activity_test1);
-        Button but = (Button)findViewById(R.id.test1buttonyes);
+        Button but = (Button)findViewById(R.id.btn_yes);
         mp = MediaPlayer.create(getApplicationContext(), files[0]);
         but.setOnClickListener(
             new View.OnClickListener() {

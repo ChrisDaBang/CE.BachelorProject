@@ -1,4 +1,4 @@
-package student.sdu.hearingscreening;
+package student.sdu.hearingscreening.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import student.sdu.hearingscreening.R;
+
 public class SendResultsActivity extends AppCompatActivity {
 
     ListView lv;
@@ -18,7 +20,7 @@ public class SendResultsActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_results);
-        lv = (ListView) findViewById(R.id.send_results_listview);
+        lv = (ListView) findViewById(R.id.lv_results);
         setupListView();
         setupButtons();
     }
@@ -45,7 +47,7 @@ public class SendResultsActivity extends AppCompatActivity {
 
     private void setupButtons()
     {
-        Button sendResultsBtn = (Button) findViewById(R.id.send_results_send_button);
+        Button sendResultsBtn = (Button) findViewById(R.id.btn_send_results);
         sendResultsBtn.setOnClickListener(new Button.OnClickListener()
         {
             @Override
@@ -72,7 +74,7 @@ public class SendResultsActivity extends AppCompatActivity {
                         Toast.LENGTH_LONG).show();
             }});
 
-        Button markAllBtn = (Button) findViewById(R.id.send_results_mark_all);
+        Button markAllBtn = (Button) findViewById(R.id.btn_mark_all);
         markAllBtn.setOnClickListener(new Button.OnClickListener()
         {
             @Override
@@ -85,7 +87,7 @@ public class SendResultsActivity extends AppCompatActivity {
             }
         });
 
-        Button demarkAllBtn = (Button) findViewById(R.id.send_results_demark_all);
+        Button demarkAllBtn = (Button) findViewById(R.id.btn_demark_all);
         demarkAllBtn.setOnClickListener(new Button.OnClickListener()
         {
             @Override

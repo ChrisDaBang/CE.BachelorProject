@@ -1,4 +1,4 @@
-package student.sdu.hearingscreening;
+package student.sdu.hearingscreening.adapters;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -9,16 +9,18 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
+import student.sdu.hearingscreening.R;
+
 /**
  * Created by Bogs on 08-02-2017.
  */
 
-public class ExpandableListAdapterTest extends BaseExpandableListAdapter {
+public class EarlierResultsListAdapter extends BaseExpandableListAdapter {
     private Context context;
     private String[][] contents;
     private String[] tests;
 
-    public ExpandableListAdapterTest(Context context, String[][] contents, String[] tests) {
+    public EarlierResultsListAdapter(Context context, String[][] contents, String[] tests) {
         super();
         this.context = context;
         this.contents = contents;
