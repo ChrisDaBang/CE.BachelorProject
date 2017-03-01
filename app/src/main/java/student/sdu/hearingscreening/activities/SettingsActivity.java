@@ -1,9 +1,11 @@
-package student.sdu.hearingscreening;
+package student.sdu.hearingscreening.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
+
+import student.sdu.hearingscreening.R;
 
 public class SettingsActivity extends AppCompatActivity {
 

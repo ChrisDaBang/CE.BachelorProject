@@ -1,14 +1,11 @@
-package student.sdu.hearingscreening;
+package student.sdu.hearingscreening.activities;
 
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.TextView;
 
-import java.util.Timer;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
+import student.sdu.hearingscreening.R;
 
 public class SplashScreenActivity extends AppCompatActivity
 {

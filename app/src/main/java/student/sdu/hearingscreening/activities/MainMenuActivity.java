@@ -1,10 +1,12 @@
-package student.sdu.hearingscreening;
+package student.sdu.hearingscreening.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import student.sdu.hearingscreening.R;
 
 public class MainMenuActivity extends AppCompatActivity {
 
@@ -13,7 +15,7 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-        Button btn = (Button) findViewById(R.id.button_HowTo);
+        Button btn = (Button) findViewById(R.id.btn_howto);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -24,7 +26,7 @@ public class MainMenuActivity extends AppCompatActivity {
             }
         });
 
-        btn = (Button) findViewById(R.id.button_StartTest);
+        btn = (Button) findViewById(R.id.btn_test);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -35,7 +37,7 @@ public class MainMenuActivity extends AppCompatActivity {
             }
         });
 
-        btn = (Button) findViewById(R.id.button_Results);
+        btn = (Button) findViewById(R.id.btn_results);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -46,7 +48,7 @@ public class MainMenuActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.button_Settings).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_settings).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
