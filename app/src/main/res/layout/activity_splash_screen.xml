@@ -8,14 +8,14 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="student.sdu.hearingscreening.SplashScreenActivity">
+    tools:context="student.sdu.hearingscreening.activities.SplashScreenActivity">
 
     <TextView
-        android:text="@string/splash_screen_text"
+        android:text="@string/splashscreen_tv_splash"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/textView2"
-        tools:text="@string/splash_screen_text"
+        android:id="@+id/tv_splash"
+        tools:text="@string/splashscreen_tv_splash"
         android:textSize="22pt"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />

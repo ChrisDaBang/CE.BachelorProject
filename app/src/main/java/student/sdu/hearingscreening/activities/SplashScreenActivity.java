@@ -14,8 +14,6 @@ public class SplashScreenActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-        //TextView tw = (TextView) findViewById(R.id.textView2);
-        //tw.setText("Hej");
         setSplashScreenTime(5);
     }
 

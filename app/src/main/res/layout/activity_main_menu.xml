@@ -8,47 +8,47 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="student.sdu.hearingscreening.MainMenuActivity">
+    tools:context="student.sdu.hearingscreening.activities.MainMenuActivity">
 
     <Button
-        android:text="@string/menu_button1_text"
+        android:text="@string/mainmenu_btn_howto"
         android:layout_height="100dp"
         android:layout_marginTop="45dp"
-        android:id="@+id/button_HowTo"
+        android:id="@+id/btn_howto"
         android:layout_width="match_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
     <Button
-        android:text="@string/menu_button4_text"
+        android:text="@string/mainmenu_btn_settings"
         android:layout_height="100dp"
-        android:id="@+id/button_Settings"
+        android:id="@+id/btn_settings"
         android:layout_width="match_parent"
-        android:layout_below="@+id/button_Results"
+        android:layout_below="@+id/btn_results"
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:text="@string/menu_text"
+        android:text="@string/mainmenu_tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView"
+        android:id="@+id/tv_title"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:textAlignment="center"/>
 
     <Button
-        android:text="@string/menu_button3_text"
+        android:text="@string/mainmenu_btn_results"
         android:layout_height="100dp"
-        android:id="@+id/button_Results"
+        android:id="@+id/btn_results"
         android:layout_width="match_parent"
-        android:layout_below="@+id/button_StartTest"
+        android:layout_below="@+id/btn_test"
         android:layout_alignParentStart="true" />
 
     <Button
-        android:text="@string/menu_button2_text"
+        android:text="@string/mainmenu_btn_test"
         android:layout_height="100dp"
-        android:id="@+id/button_StartTest"
+        android:id="@+id/btn_test"
         android:layout_width="match_parent"
-        android:layout_below="@+id/button_HowTo"
+        android:layout_below="@+id/btn_howto"
         android:layout_alignParentStart="true" />
 </RelativeLayout>

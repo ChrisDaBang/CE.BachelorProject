@@ -1,31 +1,30 @@
-<resources> <!-- -->
+<resources> <!--Naming = {Activity}_{Component}_{Identifier} -->
     <!--MainMenuActivity-->
     <string name="app_name">HearingScreening</string>
-    <string name="menu_text">Din \"work-in-progress\" hørescreenings app</string>
-    <string name="menu_button1_text">Hvordan tager jeg testen?</string>
-    <string name="menu_button2_text">Start test</string>
-    <string name="menu_button3_text">Resultater</string>
-    <string name="menu_button4_text">Indstillinger</string>
-    <string name="splash_screen_text">Læs venligst \n\"Hvordan tager jeg testen?\" \nInden du går i gang</string>
-    <string name="HowTo_screen_text1">Før du går i gang skal du sørge for at:
+    <string name="mainmenu_tv_title">Din \"work-in-progress\" hørescreenings app</string>
+    <string name="mainmenu_btn_howto">Hvordan tager jeg testen?</string>
+    <string name="mainmenu_btn_test">Start test</string>
+    <string name="mainmenu_btn_results">Resultater</string>
+    <string name="mainmenu_btn_settings">Indstillinger</string>
+    <string name="splashscreen_tv_splash">Læs venligst \n\"Hvordan tager jeg testen?\" \nInden du går i gang</string>
+    <string name="howto_tv_tutorial">Før du går i gang skal du sørge for at:
         \n\u2022 Foretage testen indendørs ved stuetemperatur (21\u2103-25\u2103)
         \n\u2022 Hej
     </string>
-    <string name="HowTo_screen_text2">
+    <string name="howto_tv_tutorial2">
         Når du trykker på knappen \"Start Test\" starter en ny høre test
     </string>
-    <string name="title_activity_test2">Test2Activity</string>
-    <string name="result_latest_earlier">Tidligere resultater</string>
-    <string name="result_latest_send">Send resultater til læge</string>
+    <string name="results_btn_earlier_results">Tidligere resultater</string>
+    <string name="results_btn_send_results">Send resultater til læge</string>
     <string-array name="tests">
         <item>1;08/02/2017;normal hørelse;ingen ændring;forsæt med brug af app</item>
         <item>2;09/02/2017;normal hørelse;ingen ændring;forsæt med brug af app</item>
         <item>3;10/02/2017;normal hørelse;ingen ændring;forsæt med brug af app</item>
         <item>4;11/02/2017;normal hørelse;ingen ændring;forsæt med brug af app</item>
     </string-array>
-    <string name="settings_buttonReminder_text">Set test days per week</string>
+    <string name="settings_btn_test_days">Set test days per week</string>
     <!-- SendResultsActivity -->
-    <string name="send_results_mark_all">Marker alle</string>
-    <string name="send_results_demark_all">Afmarker alle</string>
-    <string name="send_results_send">Send valgte resultater</string>
+    <string name="send_results_btn_mark_all">Marker alle</string>
+    <string name="send_results_btn_demark_all">Afmarker alle</string>
+    <string name="send_results_btn_send">Send valgte resultater</string>
 </resources>
