@@ -8,26 +8,22 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainMenuActivity" />
-        <activity android:name=".SplashScreenActivity">
+        <activity android:name=".activities.MainMenuActivity" />
+        <activity android:name=".activities.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HowToActivity" />
-        <activity android:name=".HowTo2Activity" />
-        <activity android:name=".Test1Activity" />
-        <activity android:name=".ResultsActivity" />
-        <activity
-            android:name=".Test2Activity"
-            android:label="@string/title_activity_test2"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ResultsActivity" />
-        <activity android:name=".EarlierResultsActivity" />
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".SendResultsActivity"></activity>
+        <activity android:name=".activities.HowToActivity" />
+        <activity android:name=".activities.HowTo2Activity" />
+        <activity android:name=".activities.Test1Activity" />
+        <activity android:name=".activities.ResultsActivity" />
+        <activity android:name=".activities.Test2Activity"/>
+        <activity android:name=".activities.EarlierResultsActivity" />
+        <activity android:name=".activities.SettingsActivity" />
+        <activity android:name=".activities.SendResultsActivity"></activity>
     </application>
 
 </manifest>

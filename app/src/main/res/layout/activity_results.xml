@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="student.sdu.hearingscreening.ResultsActivity">
+    tools:context="student.sdu.hearingscreening.activities.ResultsActivity">
 
     <TextView
         android:text="TextView"
@@ -16,43 +16,43 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/results_latest_textview" />
+        android:id="@+id/tv_latest" />
 
     <TextView
         android:text="TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/results_latest_textview"
+        android:layout_below="@+id/tv_latest"
         android:layout_alignParentStart="true"
         android:layout_marginTop="63dp"
-        android:id="@+id/results_latest_change_textview" />
+        android:id="@+id/tv_latest_change" />
 
     <TextView
         android:text="TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/results_latest_change_textview"
+        android:layout_below="@+id/tv_latest_change"
         android:layout_alignParentStart="true"
         android:layout_marginTop="48dp"
-        android:id="@+id/results_latest_suggest_textview" />
+        android:id="@+id/tv_latest_suggest" />
 
     <Button
-        android:text="@string/result_latest_send"
+        android:text="@string/results_btn_send_results"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="31dp"
         android:height="100dp"
-        android:id="@+id/results_latest_send" />
+        android:id="@+id/btn_send_results" />
 
     <Button
-        android:text="@string/result_latest_earlier"
+        android:text="@string/results_btn_earlier_results"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/result_latest_earlier_button"
+        android:id="@+id/btn_earlier_results"
         android:height="100dp"
-        android:layout_above="@+id/results_latest_send"
+        android:layout_above="@+id/btn_send_results"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="18dp" />
 </RelativeLayout>
