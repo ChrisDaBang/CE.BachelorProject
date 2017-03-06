@@ -30,15 +30,14 @@
         android:id="@+id/btn_yes" />
 
     <TextView
-        android:text="Der afspilles en tone"
+        android:text="@string/test_tv_top_text_1"
         android:textSize="15pt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="41dp"
         android:layout_marginTop="45dp"
-        android:id="@+id/tv_test_info_top" />
+        android:id="@+id/tv_test_info_top"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:text="-> Kunne du høre den?"
