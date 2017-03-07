@@ -1,5 +1,6 @@
 package student.sdu.hearingscreening.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.SparseBooleanArray;
@@ -99,5 +100,13 @@ public class SendResultsActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        Intent mainIntent = new Intent(getApplicationContext(), ResultsActivity.class);
+        SendResultsActivity.this.startActivity(mainIntent);
+        SendResultsActivity.this.finish(); //Should you finish? Who knows
     }
 }

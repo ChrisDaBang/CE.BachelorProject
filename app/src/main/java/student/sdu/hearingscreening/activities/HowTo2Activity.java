@@ -37,4 +37,12 @@ public class HowTo2Activity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed()
+    {
+        Intent mainIntent = new Intent(getApplicationContext(), MainMenuActivity.class);
+        HowTo2Activity.this.startActivity(mainIntent);
+        HowTo2Activity.this.finish();
+    }
 }

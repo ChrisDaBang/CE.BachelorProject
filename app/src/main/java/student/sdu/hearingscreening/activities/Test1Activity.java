@@ -174,4 +174,12 @@ public class Test1Activity extends AppCompatActivity
         files[6] = R.raw.sixk;
         files[7] = R.raw.eightk;
     }
+
+    @Override
+    public void onBackPressed()
+    {
+        Intent mainIntent = new Intent(getApplicationContext(), MainMenuActivity.class);
+        Test1Activity.this.startActivity(mainIntent);
+        Test1Activity.this.finish();
     }
+}

@@ -25,4 +25,11 @@ public class SettingsActivity extends AppCompatActivity {
         return super.onTouchEvent(event);
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        Intent mainIntent = new Intent(getApplicationContext(), MainMenuActivity.class);
+        SettingsActivity.this.startActivity(mainIntent);
+        SettingsActivity.this.finish();
+    }
 }

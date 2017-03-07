@@ -50,4 +50,12 @@ public class ResultsActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed()
+    {
+        Intent mainIntent = new Intent(getApplicationContext(), MainMenuActivity.class);
+        ResultsActivity.this.startActivity(mainIntent);
+        ResultsActivity.this.finish();
+    }
 }
