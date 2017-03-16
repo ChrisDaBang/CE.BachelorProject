@@ -50,7 +50,7 @@ public class DBTestActivity extends AppCompatActivity {
         if (res.getCount() > 0) {
             res.moveToFirst();
             String data = "";
-            while (!res.isLast()) {
+            while (!res.isAfterLast()) {
                 data += "TEST ID: " + res.getInt(res.getColumnIndex("testid")) + "\n";
                 data += "DATE: " + res.getString(res.getColumnIndex("date")) + "\n";
                 res.moveToNext();
