@@ -3,6 +3,7 @@
     package="student.sdu.hearingscreening">
 
     <application
+        android:name=".application.HearingScreeningApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -20,10 +21,9 @@
         <activity android:name=".activities.HowTo2Activity" />
         <activity android:name=".activities.Test1Activity" />
         <activity android:name=".activities.ResultsActivity" />
-        <activity android:name=".activities.Test2Activity"/>
         <activity android:name=".activities.EarlierResultsActivity" />
         <activity android:name=".activities.SettingsActivity" />
-        <activity android:name=".activities.SendResultsActivity"></activity>
+        <activity android:name=".activities.SendResultsActivity" />
     </application>
 
 </manifest>

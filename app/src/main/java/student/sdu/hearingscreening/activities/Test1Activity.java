@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import student.sdu.hearingscreening.OneUpTwoDownTest.OneUpTwoDownTest;
+import student.sdu.hearingscreening.OneUpTwoDownTest.TestDAO;
 import student.sdu.hearingscreening.R;
 
 public class Test1Activity extends AppCompatActivity
@@ -44,6 +45,13 @@ public class Test1Activity extends AppCompatActivity
                     test();
                 }
             });
+        Button testBtn = (Button)findViewById(R.id.btn_test_test);
+        testBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                test.testTest();
+            }
+        });
     }
 
     /**

@@ -10,10 +10,10 @@ import java.util.Map;
 
 public class TestDTO
 {
-    // Integer freqeuncy, Map<Integer dbhl, answers.
-    private Map<Integer, Map<Integer, ArrayList<Boolean>>> rightEarEntries;
-    private Map<Integer, Map<Integer, ArrayList<Boolean>>> leftEarEntries;
-    // Integer freqeuncy, Integer dbhl;
+    // Integer frequency
+    private Map<Integer, ArrayList<TestEntry>> rightEarEntries;
+    private Map<Integer, ArrayList<TestEntry>> leftEarEntries;
+    // Integer frequency, Integer dbhl;
     private Map<Integer, Integer> resultRightEar;
     private Map<Integer, Integer> resultLeftEar;
 
@@ -25,25 +25,25 @@ public class TestDTO
         resultLeftEar = new HashMap<>();
     }
 
-    public void addEntryToRightEar(int frequency, Map<Integer, ArrayList<Boolean>> entry)
+    public void addEntryToRightEar(int frequency, ArrayList<TestEntry> entries)
     {
-        addEntryToEar(true, frequency, entry);
+        addEntryToEar(true, frequency, entries);
     }
 
-    public void addEntryToLeftEar(int frequency, Map<Integer, ArrayList<Boolean>> entry)
+    public void addEntryToLeftEar(int frequency, ArrayList<TestEntry> entries)
     {
-        addEntryToEar(false, frequency, entry);
+        addEntryToEar(false, frequency, entries);
     }
 
-    private void addEntryToEar (Boolean ear, int frequency, Map<Integer, ArrayList<Boolean>> entry)
+    private void addEntryToEar (Boolean ear, int frequency, ArrayList<TestEntry> entries)
     {
         if (ear)
         {
-            rightEarEntries.put(frequency, entry);
+            rightEarEntries.put(frequency, entries);
         }
         else
         {
-            leftEarEntries.put(frequency, entry);
+            leftEarEntries.put(frequency, entries);
         }
     }
 
@@ -69,11 +69,11 @@ public class TestDTO
         }
     }
 
-    public Map<Integer, Map<Integer, ArrayList<Boolean>>> getRightEarEntries() {
+    public Map<Integer, ArrayList<TestEntry>> getRightEarEntries() {
         return rightEarEntries;
     }
 
-    public Map<Integer, Map<Integer, ArrayList<Boolean>>> getLeftEarEntries() {
+    public Map<Integer, ArrayList<TestEntry>> getLeftEarEntries() {
         return leftEarEntries;
     }
 

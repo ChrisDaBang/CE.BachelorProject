@@ -1,11 +1,14 @@
 package student.sdu.hearingscreening.OneUpTwoDownTest;
 
+import android.app.Application;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import student.sdu.hearingscreening.R;
+import student.sdu.hearingscreening.application.HearingScreeningApplication;
 
 /**
  * Created by Chris on 13-03-2017.
@@ -18,13 +21,14 @@ public class OneUpTwoDownTest
     private int startDBHL = 40;
     private int testFreqNo = 0;
     private float phoneMaxDBOutput = 65.8f;
-    private Map<Integer, ArrayList<Boolean>> entries;
+    private int sequenceTracker = 0;
+    private ArrayList<TestEntry> entries;
     private int ear; // 0 Left, 1 Right
     private TestDTO testDTO;
 
     public OneUpTwoDownTest()
     {
-        entries = new HashMap<>();
+        entries = new ArrayList();
         setupTracks();
         testDTO = new TestDTO();
         dbhl = startDBHL;
@@ -39,20 +43,9 @@ public class OneUpTwoDownTest
      */
     public boolean answer(Boolean response)
     {
-        // Current DB level already has an entry in entries
-        if(entries.get(dbhl)!=null)
-        {
-            ArrayList<Boolean> list = entries.get(dbhl);
-            list.add(response);
-            entries.put(dbhl, list);
-        }
-        // Current DB level does NOT have an entry in entries
-        else
-        {
-            ArrayList<Boolean> list = new ArrayList();
-            list.add(response);
-            entries.put(dbhl, list);
-        }
+        sequenceTracker++;
+        TestEntry entry = new TestEntry(dbhl, response, sequenceTracker);
+        entries.add(entry);
 
         return checkThreeHits(response);
     }
@@ -69,11 +62,15 @@ public class OneUpTwoDownTest
     {
         boolean testOver = false;
         //Get entries for current DB Hearing Level (dbhl), count the amount of positive responses
-        List<Boolean> value = entries.get(dbhl);
+        //List<Boolean> value = entries.get(dbhl);
         int positiveResponses = 0;
-        for(Boolean b : value)
+        for(TestEntry entry : entries)
         {
-            if(b) {positiveResponses++;}
+            if(entry.getDbhl() == this.dbhl) {
+                if(entry.getAnswer()) {
+                    positiveResponses++;
+                }
+            }
         }
 
         //If 3 positive responses at current level, chech if all frequencies have been tested.
@@ -97,11 +94,14 @@ public class OneUpTwoDownTest
             if(testFreqNo >=7 && ear == 1) //All testing done, save results
             {
                 testOver = true;
+                TestDAO dao = new TestDAO(HearingScreeningApplication.getContext());
+                dao.saveTest(testDTO);
             }
             else
             {
                 dbhl = startDBHL;
-                entries = new HashMap<>();
+                entries = new ArrayList();
+                sequenceTracker = 0;
             }
         }
         //If there is not 3 positive responses at the current DB Hearing Level (dbhl), the test
@@ -153,5 +153,17 @@ public class OneUpTwoDownTest
     }
     public int getEar() {
         return  ear;
+    }
+
+    public void testTest() {
+        answer(true);
+        answer(false);
+        answer(false);
+        answer(true);
+        answer(false);
+        answer(false);
+        answer(true);
+        TestDAO dao = new TestDAO(HearingScreeningApplication.getContext());
+        dao.saveTest(testDTO);
     }
 }
