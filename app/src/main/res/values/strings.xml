@@ -27,7 +27,6 @@
     <string name="send_results_btn_mark_all">Marker alle</string>
     <string name="send_results_btn_demark_all">Afmarker alle</string>
     <string name="send_results_btn_send">Send valgte resultater</string>
-
     <string name="test_tv_top_text_1"> Er du klar til at tage testen?</string>
     <string name="test_tv_top_text_2"> Der afspilles en tone</string>
 </resources>
