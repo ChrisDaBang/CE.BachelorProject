@@ -20,7 +20,7 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent mainIntent = new Intent(getApplicationContext(), HowToActivity.class);
+                Intent mainIntent = new Intent(getApplicationContext(), DBTestActivity.class);
                 MainMenuActivity.this.startActivity(mainIntent);
                 MainMenuActivity.this.finish(); //Should you finish? Who knows
             }
