@@ -21,40 +21,36 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private static String DB_NAME = "HEARINGSCREENING";
     private static int DB_VERSION = 1;
-    private static String DB_CREATION_QUERY = "CREATE TABLE IF NOT EXISTS `TBLTEST` (\n" +
+    private static String DB_TABLETEST_CREATION = "CREATE TABLE IF NOT EXISTS `TBLTEST` (\n" +
             "  `testid` INTEGER PRIMARY KEY,\n" +
             "  `date` TEXT\n" +
-            ");\n" +
-            "\n" +
-            "CREATE TABLE IF NOT EXISTS `TBLSETTINGS` (\n" +
+            ");";
+    private static String DB_TABLESETTINGS_CREATION = "CREATE TABLE IF NOT EXISTS `TBLSETTINGS` (\n" +
             "  `startdb` INTEGER,\n" +
             "  `firsttime` BOOLEAN,\n" +
             "  `doctor` VARCHAR(255)\n" +
-            ");\n" +
-            "\n" +
-            "CREATE TABLE IF NOT EXISTS `TBLTESTENTRIES` (\n" +
+            ");";
+    private static String DB_TABLETESTENTRIES_CREATION = "CREATE TABLE IF NOT EXISTS `TBLTESTENTRIES` (\n" +
             "  `testid` INTEGER,\n" +
             "  `decibel` INTEGER,\n" +
             "  `answer` BOOLEAN,\n" +
             "  `sequenceid` INTEGER,\n" +
             "  `entryid` INTEGER PRIMARY KEY,\n" +
             "  `ear` INTEGER\n" +
-            ");\n" +
-            "\n" +
-            "CREATE TABLE IF NOT EXISTS `TBLRESULT` (\n" +
+            ");";
+    private static String DB_TABLERESULT_CREATION = "CREATE TABLE IF NOT EXISTS `TBLRESULT` (\n" +
             "  `resultid` integer PRIMARY KEY,\n" +
             "  `testid` integer,\n" +
             "  `threshold` integer,\n" +
-            "  `freqid` integer\n" +
+            "  `freqid` integer,\n" +
             "  `ear` integer\n" +
-            ");\n" +
-            "\n" +
-            "CREATE TABLE IF NOT EXISTS `TBLFREQUENCY` (\n" +
+            ");";
+    private static String DB_TABLEFREQUENCY_CREATION = "CREATE TABLE IF NOT EXISTS `TBLFREQUENCY` (\n" +
             "  `freqid` integer PRIMARY KEY,\n" +
             "  `value` integer\n" +
-            ");\n" +
-            "\n" +
-            "CREATE TABLE IF NOT EXISTS `TBLUSER` (\n" +
+            ");";
+
+    private static String DB_TABLEUSER_CREATION = "CREATE TABLE IF NOT EXISTS `TBLUSER` (\n" +
             "  `firstname` varchar,\n" +
             "  `lastname` varchar\n" +
             ");";
@@ -66,7 +62,12 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         currentDB = db;
-        currentDB.execSQL(DB_CREATION_QUERY);
+        currentDB.execSQL(DB_TABLETEST_CREATION);
+        currentDB.execSQL(DB_TABLESETTINGS_CREATION);
+        currentDB.execSQL(DB_TABLETESTENTRIES_CREATION);
+        currentDB.execSQL(DB_TABLERESULT_CREATION);
+        currentDB.execSQL(DB_TABLEFREQUENCY_CREATION);
+        currentDB.execSQL(DB_TABLEUSER_CREATION);
         if(!checkIfInitialized()) {
             initializeValues();
         }

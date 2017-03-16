@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,11 +26,16 @@ public class TestDAO {
     public void saveTest(TestDTO test) {
         int testId = getLatestTestId() + 1;
         SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("testid", testId);
+        Date current = new Date();
+        contentValues.put("date", current.toString());
+        db.insert("TBLTEST", null, contentValues);
 
         //Put left ear testentries in db
         for(Integer freq : test.getLeftEarEntries().keySet()) {
             for(TestEntry entry : test.getLeftEarEntries().get(freq)) {
-                ContentValues contentValues = new ContentValues();
+                contentValues = new ContentValues();
                 contentValues.put("testid", testId);
                 contentValues.put("decibel", entry.getDbhl());
                 contentValues.put("answer", entry.getAnswer());
@@ -41,7 +47,7 @@ public class TestDAO {
         //Put right ear testentries in db
         for(Integer freq : test.getRightEarEntries().keySet()) {
             for(TestEntry entry : test.getRightEarEntries().get(freq)) {
-                ContentValues contentValues = new ContentValues();
+                contentValues = new ContentValues();
                 contentValues.put("testid", testId);
                 contentValues.put("decibel", entry.getDbhl());
                 contentValues.put("answer", entry.getAnswer());
@@ -53,22 +59,22 @@ public class TestDAO {
         //Put left ear results in db
         for(Integer freqid : test.getResultLeftEar().keySet()) {
             Integer threshold = test.getResultLeftEar().get(freqid);
-            ContentValues contentValues = new ContentValues();
+            contentValues = new ContentValues();
             contentValues.put("testid", testId);
             contentValues.put("threshold", threshold);
             contentValues.put("freqid", freqid);
             contentValues.put("ear", 0);
-            db.insert("TBLRESULTS", null, contentValues);
+            db.insert("TBLRESULT", null, contentValues);
         }
         //Put right ear results in db
         for(Integer freqid : test.getResultRightEar().keySet()) {
             Integer threshold = test.getResultRightEar().get(freqid);
-            ContentValues contentValues = new ContentValues();
+            contentValues = new ContentValues();
             contentValues.put("testid", testId);
             contentValues.put("threshold", threshold);
             contentValues.put("freqid", freqid);
             contentValues.put("ear", 1);
-            db.insert("TBLRESULTS", null, contentValues);
+            db.insert("TBLRESULT", null, contentValues);
         }
         System.out.println("test saved");
     }
@@ -77,9 +83,9 @@ public class TestDAO {
         int testid = 0;
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor res = db.rawQuery("SELECT MAX(testid) FROM TBLTEST", null);
-        if(res.getCount()!= 0) {
+        if(res.getCount() > 0) {
             res.moveToFirst();
-            testid = res.getInt(res.getColumnIndex("testid"));
+            testid = res.getInt(res.getColumnIndex("MAX(testid)"));
         }
         return testid;
     }
