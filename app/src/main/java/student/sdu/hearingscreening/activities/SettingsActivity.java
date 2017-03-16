@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
 
 import student.sdu.hearingscreening.R;
 
@@ -13,6 +15,17 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        Button btn = (Button) findViewById(R.id.btn_calibrate);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent mainIntent = new Intent(getApplicationContext(), CalibrateActivity.class);
+                SettingsActivity.this.startActivity(mainIntent);
+                SettingsActivity.this.finish();
+            }
+        });
     }
 
     @Override

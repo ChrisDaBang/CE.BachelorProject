@@ -8,10 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import student.sdu.hearingscreening.OneUpTwoDownTest.OneUpTwoDownTest;
-import student.sdu.hearingscreening.OneUpTwoDownTest.TestDAO;
 import student.sdu.hearingscreening.R;
 
 public class Test1Activity extends AppCompatActivity
@@ -45,6 +43,8 @@ public class Test1Activity extends AppCompatActivity
                     test();
                 }
             });
+
+        // For quick database testing purposes only
         Button testBtn = (Button)findViewById(R.id.btn_test_test);
         testBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,17 +52,47 @@ public class Test1Activity extends AppCompatActivity
                 test.testTest();
             }
         });
+        //
     }
 
     /**
-     * //todo
+     * Starts the testing process, and ends it when the process is complete.
      */
     private void test()
     {
-        if(testOver) {
-            //end
-            //// TODO: 13-03-2017
-        } else {
+        if(testOver)
+        {
+            yesBtn.setEnabled(false);
+            noBtn.setEnabled(false);
+            topInfoTv.setText("Testen er nu færdiggjort");
+            bottomInfoTv.setText("Tryk på Resultat for at komme til resultat skærmen\nEller Menu" +
+                    "for at vende til menuen");
+
+            yesBtn.setText("Resultat");
+            yesBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent mainIntent = new Intent(getApplicationContext(), ResultsActivity.class);
+                    Test1Activity.this.startActivity(mainIntent);
+                    Test1Activity.this.finish();
+                }
+            });
+
+            noBtn.setText("Menu");
+            noBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent mainIntent = new Intent(getApplicationContext(), MainMenuActivity.class);
+                    Test1Activity.this.startActivity(mainIntent);
+                    Test1Activity.this.finish();
+                }
+            });
+
+            yesBtn.setEnabled(true);
+            noBtn.setEnabled(true);
+        }
+        else
+        {
             topInfoTv.setText(R.string.test_tv_top_text_2);
             bottomInfoTv.setVisibility(View.VISIBLE);
             yesBtn.setEnabled(false);

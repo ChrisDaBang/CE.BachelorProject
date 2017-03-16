@@ -1,12 +1,6 @@
 package student.sdu.hearingscreening.OneUpTwoDownTest;
 
-import android.app.Application;
-
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import student.sdu.hearingscreening.R;
 import student.sdu.hearingscreening.application.HearingScreeningApplication;
 
@@ -37,7 +31,7 @@ public class OneUpTwoDownTest
 
     /**
      * Takes a "yes/no" answer in the form of true or false.
-     * Adds the response to the entry that corresponds the current DB Hearing Level,
+     * Creates a TestEntry object with the response, and adds it to the entries list,
      * then calls the checkThreeHits() method.
      * @param response
      */
@@ -62,7 +56,6 @@ public class OneUpTwoDownTest
     {
         boolean testOver = false;
         //Get entries for current DB Hearing Level (dbhl), count the amount of positive responses
-        //List<Boolean> value = entries.get(dbhl);
         int positiveResponses = 0;
         for(TestEntry entry : entries)
         {
@@ -73,18 +66,18 @@ public class OneUpTwoDownTest
             }
         }
 
-        //If 3 positive responses at current level, chech if all frequencies have been tested.
+        //If 3 positive responses at current level, check if all frequencies have been tested.
         //if all are tested, end the test. Else continue the test at the next frequency.
         if(positiveResponses>=3)
         {
-            if(ear == 1)
+            if(ear == 1) //After a right ear test the next frequency is used, and we go back to the left ear.
             {
                 testDTO.addEntryToRightEar(testFreqNo, entries);
                 testDTO.addResultRightEar(testFreqNo, dbhl);
                 testFreqNo++;
                 ear = 0;
             }
-            else
+            else //after a left ear test, go to right ear.
             {
                 testDTO.addEntryToLeftEar(testFreqNo, entries);
                 testDTO.addResultLeftEar(testFreqNo, dbhl);
@@ -97,7 +90,7 @@ public class OneUpTwoDownTest
                 TestDAO dao = new TestDAO(HearingScreeningApplication.getContext());
                 dao.saveTest(testDTO);
             }
-            else
+            else //If not, continue testing
             {
                 dbhl = startDBHL;
                 entries = new ArrayList();
@@ -137,8 +130,8 @@ public class OneUpTwoDownTest
 
     /**
      * Calculates the amplitude needed to hit the wanted DB.
-     * Takes a float dbTarget as the wanted DB Hearing Level.
-     * Takes a float maxPhoneOutput, which should be the DB value produced by the phone at max volume.
+     * Uses a float dbTarget as the wanted DB Hearing Level.
+     * Uses a float maxPhoneOutput, which should be the DB value produced by the phone at max volume.
      * @return the amplitude as a float
      */
     public float getAmplitude()
@@ -155,6 +148,9 @@ public class OneUpTwoDownTest
         return  ear;
     }
 
+    /**
+     * For quick database testing only
+     */
     public void testTest() {
         answer(true);
         answer(false);
@@ -165,5 +161,6 @@ public class OneUpTwoDownTest
         answer(true);
         TestDAO dao = new TestDAO(HearingScreeningApplication.getContext());
         dao.saveTest(testDTO);
+
     }
 }
