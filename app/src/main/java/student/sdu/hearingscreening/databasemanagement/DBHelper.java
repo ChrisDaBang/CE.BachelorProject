@@ -49,7 +49,6 @@ public class DBHelper extends SQLiteOpenHelper {
             "  `freqid` integer PRIMARY KEY,\n" +
             "  `value` integer\n" +
             ");";
-
     private static String DB_TABLEUSER_CREATION = "CREATE TABLE IF NOT EXISTS `TBLUSER` (\n" +
             "  `firstname` varchar,\n" +
             "  `lastname` varchar\n" +
@@ -57,8 +56,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public DBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
-
     }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         currentDB = db;
@@ -79,24 +78,27 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public SQLiteDatabase getWritableDatabase() {
-        // TODO Auto-generated method stub
+    public SQLiteDatabase getWritableDatabase()
+    {
         if(currentDB != null){
             return currentDB;
         }
         return super.getWritableDatabase();
     }
+
     @Override
-    public SQLiteDatabase getReadableDatabase() {
-        // TODO Auto-generated method stub
+    public SQLiteDatabase getReadableDatabase()
+    {
         if(currentDB != null){
             return currentDB;
         }
         return super.getReadableDatabase();
     }
 
-
-
+    /**
+     * todo
+     * @return
+     */
     public boolean insertDummy() {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -105,6 +107,10 @@ public class DBHelper extends SQLiteOpenHelper {
         return true;
     }
 
+    /**
+     * todo
+     * @return
+     */
     public String getDummy() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = db.rawQuery("SELECT * FROM TBLTEST", null);
@@ -114,14 +120,18 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-    //checks if initial values are set up
+    /**
+     * checks if initial values are set up
+     */
     private boolean checkIfInitialized() {
         SQLiteDatabase db = getReadableDatabase();
         Cursor res = db.rawQuery("SELECT * FROM TBLFREQUENCY", null);
         return res.getCount() == 0;
     }
 
-    //sets up initial and static values for tables
+    /**
+     * sets up initial and static values for tables
+     */
     private void initializeValues() {
 
         //setup frequencies
