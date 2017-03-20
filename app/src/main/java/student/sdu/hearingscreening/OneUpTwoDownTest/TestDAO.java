@@ -41,6 +41,7 @@ public class TestDAO {
                 contentValues.put("answer", entry.getAnswer());
                 contentValues.put("sequenceid", entry.getSequenceId());
                 contentValues.put("ear", 0);
+                contentValues.put("catchtrial", entry.getCatchTrial());
                 db.insert("TBLTESTENTRIES", null, contentValues);
             }
         }
@@ -53,6 +54,7 @@ public class TestDAO {
                 contentValues.put("answer", entry.getAnswer());
                 contentValues.put("sequenceid", entry.getSequenceId());
                 contentValues.put("ear", 1);
+                contentValues.put("catchtrial", entry.getCatchTrial());
                 db.insert("TBLTESTENTRIES", null, contentValues);
             }
         }

@@ -69,7 +69,7 @@ public class DBTestActivity extends AppCompatActivity {
             }
             tv.setText(tv.getText() + "TBLSETTINGS\n" + data);
         }
-        res = db.rawQuery("SELECT * FROM TBLTESTENTRIES", null);
+        res = db.rawQuery("SELECT * FROM TBLTESTENTRIES ORDER BY testid, entryid ASC", null);
         if (res.getCount() > 0) {
             res.moveToFirst();
             String data = "";
@@ -80,6 +80,7 @@ public class DBTestActivity extends AppCompatActivity {
                 data += "SEQUENCEID: " + res.getInt(res.getColumnIndex("sequenceid")) + "\n";
                 data += "ENTRYID: " + res.getInt(res.getColumnIndex("entryid")) + "\n";
                 data += "EAR: " + res.getInt(res.getColumnIndex("ear")) + "\n";
+                data += "CATCHTRIAL: " + res.getString(res.getColumnIndex("catchtrial")) + "\n";
                 res.moveToNext();
             }
             tv.setText(tv.getText() + "TBLTESTENTRIES\n" + data);

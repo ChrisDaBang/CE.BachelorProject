@@ -36,7 +36,8 @@ public class DBHelper extends SQLiteOpenHelper {
             "  `answer` BOOLEAN,\n" +
             "  `sequenceid` INTEGER,\n" +
             "  `entryid` INTEGER PRIMARY KEY,\n" +
-            "  `ear` INTEGER\n" +
+            "  `ear` INTEGER,\n" +
+            "  `catchtrial` BOOLEAN \n" +
             ");";
     private static String DB_TABLERESULT_CREATION = "CREATE TABLE IF NOT EXISTS `TBLRESULT` (\n" +
             "  `resultid` integer PRIMARY KEY,\n" +
@@ -126,7 +127,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private boolean checkIfInitialized() {
         SQLiteDatabase db = getReadableDatabase();
         Cursor res = db.rawQuery("SELECT * FROM TBLFREQUENCY", null);
-        return res.getCount() == 0;
+        return res.getCount() > 0;
     }
 
     /**
@@ -138,15 +139,29 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("value", 250);
-        contentValues.put("value", 500);
-        contentValues.put("value", 1000);
-        contentValues.put("value", 2000);
-        contentValues.put("value", 3000);
-        contentValues.put("value", 4000);
-        contentValues.put("value", 6000);
-        contentValues.put("value", 8000);
+        contentValues.put("freqid", 0);
         db.insert("TBLFREQUENCY", null, contentValues);
-
+        contentValues.put("value", 500);
+        contentValues.put("freqid", 1);
+        db.insert("TBLFREQUENCY", null, contentValues);
+        contentValues.put("value", 1000);
+        contentValues.put("freqid", 2);
+        db.insert("TBLFREQUENCY", null, contentValues);
+        contentValues.put("value", 2000);
+        contentValues.put("freqid", 3);
+        db.insert("TBLFREQUENCY", null, contentValues);
+        contentValues.put("value", 3000);
+        contentValues.put("freqid", 4);
+        db.insert("TBLFREQUENCY", null, contentValues);
+        contentValues.put("value", 4000);
+        contentValues.put("freqid", 5);
+        db.insert("TBLFREQUENCY", null, contentValues);
+        contentValues.put("value", 6000);
+        contentValues.put("freqid", 6);
+        db.insert("TBLFREQUENCY", null, contentValues);
+        contentValues.put("value", 8000);
+        contentValues.put("freqid", 7);
+        db.insert("TBLFREQUENCY", null, contentValues);
         //setup initial settings
         contentValues = new ContentValues();
         contentValues.put("startdb", 40);
