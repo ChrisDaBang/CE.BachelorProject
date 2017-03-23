@@ -21,7 +21,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent mainIntent = new Intent(getApplicationContext(), CalibrateActivity.class);
+                Intent mainIntent = new Intent(getApplicationContext(), CalibrateCheckActivity.class);
                 SettingsActivity.this.startActivity(mainIntent);
                 SettingsActivity.this.finish();
             }

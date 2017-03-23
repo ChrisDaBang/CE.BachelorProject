@@ -40,4 +40,17 @@
     <!-- SettingActivity -->
     <string name="settings_btn_test_days">Sæt antal testdage om ugen</string>
     <string name="settings_btn_calibrate">Kalibrer</string>
+
+    <!-- CalibrateCheckActivity -->
+    <string name="calibrate_tv_sure_check">Dette begynder kalibrerings processen af headsettet med din telefon og app.
+    Dette skal udføres med udstyret på høreklinikken, og kan ikke gøres hjemme. \n
+    Er du sikker på du vil fortsætte?</string>
+
+    <!-- CalibrateActivity -->
+    <string name="calibrate_btn_playsound">Afspil Lyd</string>
+    <string name="calibrate_btn_enter">Enter</string>
+    <string name="calibrate_tv_top"></string>
+    <string name="calibrate_tv_input"></string>
+    <string name="calibrate_tv_progressbar_info"></string>
+
 </resources>

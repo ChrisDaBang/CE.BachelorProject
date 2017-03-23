@@ -24,7 +24,8 @@
         <activity android:name=".activities.EarlierResultsActivity" />
         <activity android:name=".activities.SettingsActivity" />
         <activity android:name=".activities.SendResultsActivity" />
-        <activity android:name=".activities.DBTestActivity"></activity>
+        <activity android:name=".activities.DBTestActivity" />
+        <activity android:name=".activities.CalibrateCheckActivity" />
         <activity android:name=".activities.CalibrateActivity"></activity>
     </application>
 
