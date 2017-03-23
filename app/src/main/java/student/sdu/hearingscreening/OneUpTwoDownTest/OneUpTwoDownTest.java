@@ -1,6 +1,8 @@
 package student.sdu.hearingscreening.OneUpTwoDownTest;
 
 import java.util.ArrayList;
+import java.util.Random;
+
 import student.sdu.hearingscreening.R;
 import student.sdu.hearingscreening.application.HearingScreeningApplication;
 
@@ -19,6 +21,7 @@ public class OneUpTwoDownTest
     private ArrayList<TestEntry> entries;
     private int ear; // 0 Left, 1 Right
     private TestDTO testDTO;
+    private boolean currentlyInCatchTrial;
 
     public OneUpTwoDownTest()
     {
@@ -27,6 +30,7 @@ public class OneUpTwoDownTest
         testDTO = new TestDTO();
         dbhl = startDBHL;
         ear = 0;
+        currentlyInCatchTrial = false;
     }
 
     /**
@@ -37,9 +41,13 @@ public class OneUpTwoDownTest
      */
     public boolean answer(Boolean response)
     {
-        sequenceTracker++;
-        TestEntry entry = new TestEntry(dbhl, response, sequenceTracker);
-        entries.add(entry);
+        //1 in 25 chance to enter catchtrial
+            Random rand = new Random();
+            currentlyInCatchTrial = rand.nextInt(25) == 24;
+
+            sequenceTracker++;
+            TestEntry entry = new TestEntry(dbhl, response, sequenceTracker, currentlyInCatchTrial);
+            entries.add(entry);
 
         return checkThreeHits(response);
     }
@@ -60,7 +68,7 @@ public class OneUpTwoDownTest
         for(TestEntry entry : entries)
         {
             if(entry.getDbhl() == this.dbhl) {
-                if(entry.getAnswer()) {
+                if(entry.getAnswer() && !entry.getCatchTrial()) {
                     positiveResponses++;
                 }
             }
@@ -76,12 +84,14 @@ public class OneUpTwoDownTest
                 testDTO.addResultRightEar(testFreqNo, dbhl);
                 testFreqNo++;
                 ear = 0;
+                currentlyInCatchTrial = false;
             }
             else //after a left ear test, go to right ear.
             {
                 testDTO.addEntryToLeftEar(testFreqNo, entries);
                 testDTO.addResultLeftEar(testFreqNo, dbhl);
                 ear = 1;
+                currentlyInCatchTrial = false;
             }
 
             if(testFreqNo >=7 && ear == 1) //All testing done, save results
@@ -95,13 +105,17 @@ public class OneUpTwoDownTest
                 dbhl = startDBHL;
                 entries = new ArrayList();
                 sequenceTracker = 0;
+                currentlyInCatchTrial = false;
             }
         }
-        //If there is not 3 positive responses at the current DB Hearing Level (dbhl), the test
+        //If there are not 3 positive responses at the current DB Hearing Level (dbhl), the test
         // continues at the same frequency at a new dbhl.
         else
         {
-            if(response)
+            if(currentlyInCatchTrial) {
+                //no change
+            }
+            else if(response)
             {
                 dbhl-=10;
             }
@@ -152,13 +166,15 @@ public class OneUpTwoDownTest
      * For quick database testing only
      */
     public void testTest() {
-        answer(true);
-        answer(false);
-        answer(false);
-        answer(true);
-        answer(false);
-        answer(false);
-        answer(true);
+        for(int i = 0; i<16; i++) {
+            answer(true);
+            answer(false);
+            answer(false);
+            answer(true);
+            answer(false);
+            answer(false);
+            answer(true);
+        }
         TestDAO dao = new TestDAO(HearingScreeningApplication.getContext());
         dao.saveTest(testDTO);
 

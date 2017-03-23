@@ -20,7 +20,7 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent mainIntent = new Intent(getApplicationContext(), DBTestActivity.class);
+                Intent mainIntent = new Intent(getApplicationContext(), HowToActivity.class);
                 MainMenuActivity.this.startActivity(mainIntent);
                 MainMenuActivity.this.finish(); //Should you finish? Who knows
             }
@@ -53,6 +53,27 @@ public class MainMenuActivity extends AppCompatActivity {
             public void onClick(View v)
             {
                 Intent mainIntent = new Intent(getApplicationContext(), SettingsActivity.class);
+                MainMenuActivity.this.startActivity(mainIntent);
+                MainMenuActivity.this.finish(); //Should you finish? Who knows
+            }
+        });
+        btn = (Button) findViewById(R.id.btn_dbtest);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent mainIntent = new Intent(getApplicationContext(), DBTestActivity.class);
+                MainMenuActivity.this.startActivity(mainIntent);
+                MainMenuActivity.this.finish(); //Should you finish? Who knows
+            }
+        });
+
+        btn = (Button) findViewById(R.id.btn_barchart);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent mainIntent = new Intent(getApplicationContext(), UserBarchartActivity.class);
                 MainMenuActivity.this.startActivity(mainIntent);
                 MainMenuActivity.this.finish(); //Should you finish? Who knows
             }
