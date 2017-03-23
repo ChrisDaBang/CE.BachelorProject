@@ -27,7 +27,8 @@
         <activity android:name=".activities.DBTestActivity" />
         <activity android:name=".activities.CalibrateCheckActivity" />
         <activity android:name=".activities.CalibrateActivity" />
-        <activity android:name=".activities.UserBarchartActivity"></activity>
+        <activity android:name=".activities.UserBarchartActivity" />
+        <activity android:name=".activities.VolumeTestActivity"></activity>
     </application>
 
 </manifest>

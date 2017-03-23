@@ -26,6 +26,16 @@ public class SettingsActivity extends AppCompatActivity {
                 SettingsActivity.this.finish();
             }
         });
+        btn = (Button) findViewById(R.id.btn_volumetest);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent mainIntent = new Intent(getApplicationContext(), VolumeTestActivity.class);
+                SettingsActivity.this.startActivity(mainIntent);
+                SettingsActivity.this.finish();
+            }
+        });
     }
 
     @Override
