@@ -12,16 +12,9 @@ import student.sdu.hearingscreening.R;
 public class CalibrationProcessor
 {
     private int calibrationFreqNo;
-    private float calibrationVolume;
     private boolean calibrationOver;
     private int[] files;
-    private Map<Float, Map<Integer, Integer>> getFreqMapAtVolume;
-
-    // Maps holding the DB value gotten from playing the different frequencies at different volumes.
     private Map<Integer, Integer> frequencyAtMax;
-    private Map<Integer, Integer> frequencyAtSeventyFive;
-    private Map<Integer, Integer> frequencyAtFifty;
-    private Map<Integer, Integer> frequencyAtTwentyFive;
 
     /**
      *
@@ -29,10 +22,8 @@ public class CalibrationProcessor
     public CalibrationProcessor()
     {
         calibrationFreqNo = 0;
-        calibrationVolume = initialCalibrationSettings();
+        frequencyAtMax = new HashMap<>();
         calibrationOver = false;
-        setupFrequencyMaps();
-        initFreqAtVolumeGetter();
         setupTracks();
     }
 
@@ -41,40 +32,19 @@ public class CalibrationProcessor
      * @param db
      * @return
      */
-    public float calibrate(int db)
+    public void calibrate(int db)
     {
-        getFreqMapAtVolume.get(calibrationVolume).put(calibrationFreqNo, db);
+        frequencyAtMax.put(calibrationFreqNo, db);
 
-        if (calibrationVolume == 0.25f)
+        if (calibrationFreqNo == 7)
         {
-            if (calibrationFreqNo == 7)
-            {
-                calibrationOver = true;
-                soutMapData();
-            }
-            calibrationFreqNo++;
-            calibrationVolume = 1f;
-        }
-        else if (calibrationVolume == 0.50f)
-        {
-            calibrationVolume = 0.25f;
-        }
-        else if (calibrationVolume == 0.75f)
-        {
-            calibrationVolume = 0.50f;
-        }
-        else if (calibrationVolume == 1f)
-        {
-            calibrationVolume = 0.75f;
+            calibrationOver = true;
+            soutMapData();
         }
         else
         {
-            //If we get here, then something went wrong in the code.
-            System.out.println("Du har lavet en fejl");
+            calibrationFreqNo++;
         }
-
-
-        return calibrationVolume;
     }
 
     /**
@@ -86,23 +56,10 @@ public class CalibrationProcessor
         return 1f;
     }
 
-
     public Boolean isCalibrationDone()
     {
         return calibrationOver;
     }
-
-    /**
-     *
-     */
-    private void setupFrequencyMaps()
-    {
-        frequencyAtMax = new HashMap<>();
-        frequencyAtSeventyFive = new HashMap<>();
-        frequencyAtFifty = new HashMap<>();
-        frequencyAtTwentyFive = new HashMap<>();
-    }
-
 
     /**
      * Instantiates the files[] array with the sound resources.
@@ -125,24 +82,10 @@ public class CalibrationProcessor
         return files[calibrationFreqNo];
     }
 
-    private void initFreqAtVolumeGetter()
-    {
-        getFreqMapAtVolume = new HashMap<>();
-        getFreqMapAtVolume.put(1f, frequencyAtMax);
-        getFreqMapAtVolume.put(0.75f, frequencyAtSeventyFive);
-        getFreqMapAtVolume.put(0.5f, frequencyAtFifty);
-        getFreqMapAtVolume.put(0.25f, frequencyAtTwentyFive);
-    }
-
+    //For quick testing
     private void soutMapData()
     {
-        System.out.println("AtMax:\n");
+        System.out.println("Calibration data:\n");
         System.out.println(frequencyAtMax);
-        System.out.println("At75:\n");
-        System.out.println(frequencyAtSeventyFive);
-        System.out.println("At50:\n");
-        System.out.println(frequencyAtFifty);
-        System.out.println("At25:\n");
-        System.out.println(frequencyAtTwentyFive);
     }
 }

@@ -49,8 +49,9 @@
     <!-- CalibrateActivity -->
     <string name="calibrate_btn_playsound">Afspil Lyd</string>
     <string name="calibrate_btn_enter">Enter</string>
-    <string name="calibrate_tv_top"></string>
-    <string name="calibrate_tv_input"></string>
-    <string name="calibrate_tv_progressbar_info"></string>
+    <string name="calibrate_tv_top">Kalibreringen er påbegyndt.\n
+    Afspil lydene og indsæt decibel værdierne målt af det kunstige øre.</string>
+    <string name="calibrate_tv_input">Værdi aflæst på øret:</string>
+    <string name="calibrate_tv_progressbar_info">Kalibreringen er 0% gennemført</string>
 
 </resources>

@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Map;
 
@@ -25,9 +26,8 @@ public class CalibrateActivity extends AppCompatActivity {
     private CalibrationProcessor cp;
     private MediaPlayer mp;
     private float calibrationVolume;
-    private Handler progressHandler = new Handler();
     private float cSteps = 0f;
-    private float pSteps = 32f;
+    private float pSteps = 8f;
 
     private Button btnPlaySound;
     private Button btnEnter;
@@ -50,19 +50,25 @@ public class CalibrateActivity extends AppCompatActivity {
     }
 
     /**
-     * todo JavaDoc
+     * Called when the user presses the "Enter" button.
+     * Gives the decibel value that the user has set in the input field to the CalibrationProcessor,
+     * and calls the updateProgressBar method. If the calibration is then done, the GUI is changed to
+     * reflect this state and give the user the option to move on to another activity.
      * @param db
      */
     private void calibrate(int db)
     {
-        calibrationVolume = cp.calibrate(db);
+        cp.calibrate(db);
         updateProgressBar();
 
         if (cp.isCalibrationDone()) //Then finish calibration
         {
             btnEnter.setEnabled(false);
             btnPlaySound.setEnabled(false);
-            
+
+            tvTop.setText("Kalibreringen er fuldført! Din telefon med det brugte headset " +
+                    "er nu klar til at foretage høre test når det passer dig");
+            tvInput.setText("Tryk på \"Afslut\" for at færdiggøre kalibreringen");
             btnEnter.setText("Afslut");
             btnEnter.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -72,20 +78,26 @@ public class CalibrateActivity extends AppCompatActivity {
                     CalibrateActivity.this.finish();
                 }
             });
-            
-            //// TODO: 20-03-2017 Set the different tvs 
-            // Maybe wait 1 sec before unlocking btn?
-            btnEnter.setEnabled(true);
+
+            //Delay "Afslut" button to stop the user from miss clicking away from the activity
+            new Handler().postDelayed(new Runnable()
+            {
+                public void run()
+                {
+                    btnEnter.setEnabled(true);
+                }
+            }, (1000));
+
         }
     }
 
     /**
      * Plays the sound used for testing.
-     * When the sound is completed, the yes/no buttons are enabled.
-     * The frequency is based on a class variable, used to keep the frequencies sequential in testing.
-     * The volume is based on the wanted DB Hearing Level, and is found using the calculateAmplitude() method.
+     * When the sound is completed, the necessary GUI elements unlocked.
+     * The sound to be played is gotten from the CalibrationProcessor,
+     * and is played at the MediaPlayer volume given as a parameter.
      */
-    private void playSound(float volume)
+    private void playSound(float volume) //todo handle float volumes over 1?
     {
         mp = MediaPlayer.create(CalibrateActivity.this, cp.getSoundFile());
         mp.setVolume(volume, volume);
@@ -130,16 +142,18 @@ public class CalibrateActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                if (!etNrInput.getText().toString().equals("")) //// TODO: 22-03-2017 Fix handling of empty input
+                if (!etNrInput.getText().toString().equals("")) //Check if input is empty, else Integer.valueOf gives exception and breaks
                 {
                     btnEnter.setEnabled(false);
                     etNrInput.setEnabled(false);
-                    calibrate(Integer.valueOf(etNrInput.getText().toString())); // java.lang.NumberFormatException: For input string: ""
+                    calibrate(Integer.valueOf(etNrInput.getText().toString()));
                     etNrInput.getText().clear();
                 }
                 else
                 {
-                    //Make toast
+                    Toast.makeText(HearingScreeningApplication.getContext(),
+                            "Venligst angiv en decibel værdi inden du kan gå videre",
+                            Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -155,12 +169,13 @@ public class CalibrateActivity extends AppCompatActivity {
     }
 
     /**
-     * todo JavaDoc
+     * Updates the progress bar as well as the text in the text view above it.
      */
     private void updateProgressBar()
     {
         cSteps++;
         int progress = Math.round((cSteps/pSteps)*100f);
         progressBar.setProgress(progress);
+        tvProgressBar.setText("Kalibreringen er " + progress + "% gennemført");
     }
 }
