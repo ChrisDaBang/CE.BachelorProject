@@ -72,10 +72,10 @@ public class EarlierResultsListAdapter extends BaseExpandableListAdapter {
         }
         if(isExpanded) {
             row.setCompoundDrawablesWithIntrinsicBounds(
-                    R.mipmap.arrow_down, 0, 0, 0);
+                    R.drawable.arrow_down, 0, 0, 0);
         } else{
             row.setCompoundDrawablesWithIntrinsicBounds(
-                    R.mipmap.arrow_right, 0, 0, 0);
+                    R.drawable.arrow_right, 0, 0, 0);
         }
         row.setTypeface(Typeface.DEFAULT_BOLD);
         row.setTextSize(30);

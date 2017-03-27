@@ -16,7 +16,7 @@
         android:layout_height="match_parent"
         android:id="@+id/tv_splash"
         tools:text="@string/splashscreen_tv_splash"
-        android:textSize="22pt"
+        android:textSize="16pt"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 </RelativeLayout>
