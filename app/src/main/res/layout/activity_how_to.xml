@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_how_to"
     android:layout_width="match_parent"
@@ -10,31 +11,27 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="student.sdu.hearingscreening.activities.HowToActivity">
 
-    <Button
-        android:text="Next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="19dp"
-        android:layout_marginBottom="11dp"
-        android:id="@+id/btn_next" />
-
-    <Button
-        android:text="Back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/btn_next"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="22dp"
-        android:id="@+id/btn_back" />
+    <ImageButton
+        android:id="@+id/ib_swipe_left"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="300dp"
+        android:scaleX="-1"
+        android:background="@drawable/swipe" />
 
     <TextView
         android:text="@string/howto_tv_tutorial"
-        android:textSize="16pt"
+        android:textSize="14pt"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/tv_tutorial"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/btn_back" />
+        android:layout_alignParentTop="true" />
+
+    <ImageButton
+        android:id="@+id/ib_swipe_right"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/ib_swipe_left"
+        android:background="@drawable/swipe" />
 </RelativeLayout>

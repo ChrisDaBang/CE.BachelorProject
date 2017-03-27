@@ -21,8 +21,10 @@ public class MainMenuActivity extends AppCompatActivity {
             public void onClick(View v)
             {
                 Intent mainIntent = new Intent(getApplicationContext(), HowToActivity.class);
+                mainIntent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 MainMenuActivity.this.startActivity(mainIntent);
-                MainMenuActivity.this.finish(); //Should you finish? Who knows
+                overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out2);
+                MainMenuActivity.this.finish();
             }
         });
 

@@ -1,5 +1,5 @@
 <resources> <!--Naming = {Activity}_{Component}_{Identifier} -->
-    <string name="app_name">HearingScreening</string>
+    <string name="app_name">Høre Screening</string>
     <string name="splashscreen_tv_splash">Læs venligst \n\"Hvordan tager jeg testen?\" \nInden du går i gang</string>
 
     <!-- MainMenuActivity -->
