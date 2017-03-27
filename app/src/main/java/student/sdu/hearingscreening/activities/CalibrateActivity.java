@@ -1,7 +1,10 @@
 package student.sdu.hearingscreening.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.os.Handler;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,14 +18,16 @@ import android.widget.TextView;
 import java.util.Map;
 
 import student.sdu.hearingscreening.R;
+import student.sdu.hearingscreening.application.HearingScreeningApplication;
 import student.sdu.hearingscreening.calibration.CalibrationProcessor;
 
 public class CalibrateActivity extends AppCompatActivity {
     private CalibrationProcessor cp;
     private MediaPlayer mp;
-    private Boolean calibrationOver;
-    private Map<Integer, Float> calibrationSettings;
     private float calibrationVolume;
+    private Handler progressHandler = new Handler();
+    private float cSteps = 0f;
+    private float pSteps = 32f;
 
     private Button btnPlaySound;
     private Button btnEnter;
@@ -40,11 +45,18 @@ public class CalibrateActivity extends AppCompatActivity {
         instantiateGUIFields();
         cp = new CalibrationProcessor();
         calibrationVolume = cp.initialCalibrationSettings();
+
+        HearingScreeningApplication.setMusicStreamVolumeFifty();
     }
 
+    /**
+     * todo JavaDoc
+     * @param db
+     */
     private void calibrate(int db)
     {
         calibrationVolume = cp.calibrate(db);
+        updateProgressBar();
 
         if (cp.isCalibrationDone()) //Then finish calibration
         {
@@ -97,6 +109,9 @@ public class CalibrateActivity extends AppCompatActivity {
         CalibrateActivity.this.finish();
     }
 
+    /**
+     * todo JavaDoc
+     */
     private void instantiateGUIFields()
     {
         btnPlaySound = (Button) findViewById(R.id.btn_calibrate_playsound);
@@ -137,5 +152,15 @@ public class CalibrateActivity extends AppCompatActivity {
 
         etNrInput = (EditText) findViewById(R.id.et_calibrate_number_input);
         etNrInput.setEnabled(false);
+    }
+
+    /**
+     * todo JavaDoc
+     */
+    private void updateProgressBar()
+    {
+        cSteps++;
+        int progress = Math.round((cSteps/pSteps)*100f);
+        progressBar.setProgress(progress);
     }
 }

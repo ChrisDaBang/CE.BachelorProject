@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="0dp"
         android:layout_marginRight="7dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="8dp"
@@ -20,18 +19,22 @@
         app:layout_constraintHorizontal_bias="0.023"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintVertical_bias="0.05"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="7dp" />
 
     <ProgressBar
         android:id="@+id/pb_calibrate"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="395dp"
-        android:layout_height="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="9dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
@@ -48,7 +51,9 @@
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <Button
         android:id="@+id/btn_calibrate_playsound"
@@ -65,7 +70,8 @@
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintVertical_bias="0.25"
+        android:layout_marginEnd="8dp" />
 
     <EditText
         android:id="@+id/et_calibrate_number_input"
@@ -82,7 +88,9 @@
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
-        app:layout_constraintVertical_bias="0.55" />
+        app:layout_constraintVertical_bias="0.55"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <TextView
         android:id="@+id/tv_calibrate_input"
@@ -98,21 +106,23 @@
         android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@+id/btn_calibrate_playsound"
         app:layout_constraintVertical_bias="1.0"
-        app:layout_constraintHorizontal_bias="0.05" />
+        app:layout_constraintHorizontal_bias="0.05"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <Button
         android:id="@+id/btn_calibrate_enter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="0dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="0dp"
         android:text="Indsæt"
         app:layout_constraintBottom_toBottomOf="@+id/et_calibrate_number_input"
         app:layout_constraintLeft_toRightOf="@+id/et_calibrate_number_input"
         app:layout_constraintTop_toTopOf="@+id/et_calibrate_number_input"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="8dp" />
 
 </android.support.constraint.ConstraintLayout>
