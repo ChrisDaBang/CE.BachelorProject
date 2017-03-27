@@ -1,9 +1,14 @@
 package student.sdu.hearingscreening.calibration;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
+
 import java.util.HashMap;
 import java.util.Map;
 
 import student.sdu.hearingscreening.R;
+import student.sdu.hearingscreening.application.HearingScreeningApplication;
+import student.sdu.hearingscreening.databasemanagement.DBHelper;
 
 /**
  * Created by Chris on 20-03-2017.
@@ -15,6 +20,7 @@ public class CalibrationProcessor
     private boolean calibrationOver;
     private int[] files;
     private Map<Integer, Integer> frequencyAtMax;
+    private DBHelper dbHelper;
 
     /**
      *
@@ -25,6 +31,7 @@ public class CalibrationProcessor
         frequencyAtMax = new HashMap<>();
         calibrationOver = false;
         setupTracks();
+        dbHelper = new DBHelper(HearingScreeningApplication.getContext());
     }
 
     /**
@@ -38,8 +45,8 @@ public class CalibrationProcessor
 
         if (calibrationFreqNo == 7)
         {
+            saveDataToDataBase();
             calibrationOver = true;
-            soutMapData();
         }
         else
         {
@@ -47,6 +54,18 @@ public class CalibrationProcessor
         }
     }
 
+    private boolean saveDataToDataBase()
+    {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        for (int i = 0; i < frequencyAtMax.size(); i++)
+        {
+            ContentValues cv = new ContentValues();
+            cv.put("freqid", i);
+            cv.put("maxoutput", frequencyAtMax.get(i));
+            db.insert("TBLCALIBRATION", null, cv);
+        }
+        return true;
+    }
     /**
      *
      * @return
@@ -80,12 +99,5 @@ public class CalibrationProcessor
     public int getSoundFile()
     {
         return files[calibrationFreqNo];
-    }
-
-    //For quick testing
-    private void soutMapData()
-    {
-        System.out.println("Calibration data:\n");
-        System.out.println(frequencyAtMax);
     }
 }

@@ -8,9 +8,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import student.sdu.hearingscreening.OneUpTwoDownTest.OneUpTwoDownTest;
 import student.sdu.hearingscreening.R;
+import student.sdu.hearingscreening.application.HearingScreeningApplication;
 
 public class Test1Activity extends AppCompatActivity
 {
@@ -40,7 +42,17 @@ public class Test1Activity extends AppCompatActivity
             new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    test();
+                    if (test.isCalibrationEmpty())
+                    {
+                        Toast.makeText(HearingScreeningApplication.getContext(),
+                                "Der er ikke foretaget kalibrering med dette device\n" +
+                                        "Venligst gør dette i samarbejde med klinikken",
+                                Toast.LENGTH_LONG).show();
+                    }
+                    else
+                    {
+                        test();
+                    }
                 }
             });
 

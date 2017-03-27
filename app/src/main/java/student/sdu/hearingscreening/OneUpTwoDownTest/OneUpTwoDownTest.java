@@ -1,6 +1,8 @@
 package student.sdu.hearingscreening.OneUpTwoDownTest;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import student.sdu.hearingscreening.R;
@@ -16,15 +18,18 @@ public class OneUpTwoDownTest
     private int dbhl;
     private int startDBHL = 40;
     private int testFreqNo = 0;
-    private float phoneMaxDBOutput = 65.8f;
+    private Map<Integer, Integer> phoneMaxDBOutput;
     private int sequenceTracker = 0;
     private ArrayList<TestEntry> entries;
     private int ear; // 0 Left, 1 Right
+    private TestDAO testDAO;
     private TestDTO testDTO;
     private boolean currentlyInCatchTrial;
 
     public OneUpTwoDownTest()
     {
+        testDAO = new TestDAO(HearingScreeningApplication.getContext());
+        phoneMaxDBOutput = testDAO.getCalibrationValues();
         entries = new ArrayList();
         setupTracks();
         testDTO = new TestDTO();
@@ -150,7 +155,7 @@ public class OneUpTwoDownTest
      */
     public float getAmplitude()
     {
-        float amplitude = (float) Math.pow(10,(dbhl-phoneMaxDBOutput)/20);
+        float amplitude = (float) Math.pow(10,(dbhl-phoneMaxDBOutput.get(testFreqNo))/20);
         return amplitude;
     }
 
@@ -175,8 +180,12 @@ public class OneUpTwoDownTest
             answer(false);
             answer(true);
         }
-        TestDAO dao = new TestDAO(HearingScreeningApplication.getContext());
-        dao.saveTest(testDTO);
+        testDAO.saveTest(testDTO);
 
+    }
+
+    public boolean isCalibrationEmpty()
+    {
+        return phoneMaxDBOutput.isEmpty();
     }
 }

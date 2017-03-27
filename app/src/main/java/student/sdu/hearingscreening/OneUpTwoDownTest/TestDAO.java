@@ -91,4 +91,23 @@ public class TestDAO {
         }
         return testid;
     }
+
+    public Map<Integer, Integer> getCalibrationValues()
+    {
+        Map<Integer, Integer> calibrationValues = new HashMap<>();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM TBLCALIBRATION", null);
+        if(res.getCount() > 0)
+        {
+            res.moveToFirst();
+            while (!res.isAfterLast())
+            {
+                int freqID = res.getInt(res.getColumnIndex("freqid"));
+                int decibelMax = res.getInt(res.getColumnIndex("maxoutput"));
+                calibrationValues.put(freqID, decibelMax);
+                res.moveToNext();
+            }
+        }
+        return calibrationValues;
+    }
 }

@@ -54,6 +54,12 @@ public class DBHelper extends SQLiteOpenHelper {
             "  `firstname` varchar,\n" +
             "  `lastname` varchar\n" +
             ");";
+    private static String DB_TABLECALIBRATION_CREATION = "CREATE TABLE IF NOT EXISTS `TBLCALIBRATION` (\n" +
+            "   `freqid` integer PRIMARY KEY, \n" +
+            "   `maxoutput` integer\n" +
+            ");";
+
+
 
     public DBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -68,6 +74,7 @@ public class DBHelper extends SQLiteOpenHelper {
         currentDB.execSQL(DB_TABLERESULT_CREATION);
         currentDB.execSQL(DB_TABLEFREQUENCY_CREATION);
         currentDB.execSQL(DB_TABLEUSER_CREATION);
+        currentDB.execSQL(DB_TABLECALIBRATION_CREATION);
         if(!checkIfInitialized()) {
             initializeValues();
         }
