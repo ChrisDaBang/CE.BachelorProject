@@ -7,6 +7,7 @@ import android.widget.ExpandableListView;
 
 import student.sdu.hearingscreening.R;
 import student.sdu.hearingscreening.adapters.EarlierResultsListAdapter;
+import student.sdu.hearingscreening.application.HearingScreeningApplication;
 
 public class EarlierResultsActivity extends AppCompatActivity {
 
@@ -49,8 +50,6 @@ public class EarlierResultsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        Intent mainIntent = new Intent(getApplicationContext(), ResultsActivity.class);
-        EarlierResultsActivity.this.startActivity(mainIntent);
-        EarlierResultsActivity.this.finish(); //Should you finish? Who knows
+        HearingScreeningApplication.activityIntentSwitch(new ResultsActivity(), EarlierResultsActivity.this);
     }
 }

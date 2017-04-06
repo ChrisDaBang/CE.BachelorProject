@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import student.sdu.hearingscreening.R;
+import student.sdu.hearingscreening.application.HearingScreeningApplication;
 
 public class ResultsActivity extends AppCompatActivity {
 
@@ -34,9 +35,7 @@ public class ResultsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent mainIntent = new Intent(getApplicationContext(), EarlierResultsActivity.class);
-                ResultsActivity.this.startActivity(mainIntent);
-                ResultsActivity.this.finish();
+                HearingScreeningApplication.activityIntentSwitch(new EarlierResultsActivity(), ResultsActivity.this);
             }
         });
 
@@ -44,9 +43,7 @@ public class ResultsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent mainIntent = new Intent(getApplicationContext(), SendResultsActivity.class);
-                ResultsActivity.this.startActivity(mainIntent);
-                ResultsActivity.this.finish();
+                HearingScreeningApplication.activityIntentSwitch(new SendResultsActivity(), ResultsActivity.this);
             }
         });
     }
@@ -54,8 +51,6 @@ public class ResultsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        Intent mainIntent = new Intent(getApplicationContext(), MainMenuActivity.class);
-        ResultsActivity.this.startActivity(mainIntent);
-        ResultsActivity.this.finish();
+        HearingScreeningApplication.activityIntentSwitch(new MainMenuActivity(), this);
     }
 }

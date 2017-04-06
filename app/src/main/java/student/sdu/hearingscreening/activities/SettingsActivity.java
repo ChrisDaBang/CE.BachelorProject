@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import student.sdu.hearingscreening.R;
+import student.sdu.hearingscreening.application.HearingScreeningApplication;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -21,9 +22,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent mainIntent = new Intent(getApplicationContext(), CalibrateCheckActivity.class);
-                SettingsActivity.this.startActivity(mainIntent);
-                SettingsActivity.this.finish();
+                HearingScreeningApplication.activityIntentSwitch(new CalibrateActivity(), SettingsActivity.this);
             }
         });
         btn = (Button) findViewById(R.id.btn_volumetest);
@@ -31,9 +30,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent mainIntent = new Intent(getApplicationContext(), VolumeTestActivity.class);
-                SettingsActivity.this.startActivity(mainIntent);
-                SettingsActivity.this.finish();
+                HearingScreeningApplication.activityIntentSwitch(new VolumeTestActivity(), SettingsActivity.this);
             }
         });
     }
@@ -41,9 +38,7 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     public boolean onTouchEvent(MotionEvent event)
     {
-        Intent mainIntent = new Intent(getApplicationContext(), MainMenuActivity.class);
-        SettingsActivity.this.startActivity(mainIntent);
-        SettingsActivity.this.finish();
+        HearingScreeningApplication.activityIntentSwitch(new MainMenuActivity(), this);
 
         return super.onTouchEvent(event);
     }
@@ -51,8 +46,6 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        Intent mainIntent = new Intent(getApplicationContext(), MainMenuActivity.class);
-        SettingsActivity.this.startActivity(mainIntent);
-        SettingsActivity.this.finish();
+        HearingScreeningApplication.activityIntentSwitch(new MainMenuActivity(), this);
     }
 }

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import student.sdu.hearingscreening.R;
+import student.sdu.hearingscreening.application.HearingScreeningApplication;
 
 public class CalibrateCheckActivity extends AppCompatActivity {
 
@@ -21,9 +22,7 @@ public class CalibrateCheckActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent mainIntent = new Intent(getApplicationContext(), CalibrateActivity.class);
-                CalibrateCheckActivity.this.startActivity(mainIntent);
-                CalibrateCheckActivity.this.finish();
+                HearingScreeningApplication.activityIntentSwitch(new CalibrateActivity(), CalibrateCheckActivity.this);
             }
         });
 
@@ -31,9 +30,7 @@ public class CalibrateCheckActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mainIntent = new Intent(getApplicationContext(), MainMenuActivity.class);
-                CalibrateCheckActivity.this.startActivity(mainIntent);
-                CalibrateCheckActivity.this.finish();
+                HearingScreeningApplication.activityIntentSwitch(new MainMenuActivity(), CalibrateCheckActivity.this);
             }
         });
     }
@@ -41,8 +38,6 @@ public class CalibrateCheckActivity extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        Intent mainIntent = new Intent(getApplicationContext(), SettingsActivity.class);
-        CalibrateCheckActivity.this.startActivity(mainIntent);
-        CalibrateCheckActivity.this.finish();
+        HearingScreeningApplication.activityIntentSwitch(new SettingsActivity(), this);
     }
 }

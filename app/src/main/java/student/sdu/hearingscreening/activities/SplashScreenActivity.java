@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import student.sdu.hearingscreening.R;
+import student.sdu.hearingscreening.application.HearingScreeningApplication;
 
 public class SplashScreenActivity extends AppCompatActivity
 {
@@ -28,9 +29,7 @@ public class SplashScreenActivity extends AppCompatActivity
         {
             public void run()
             {
-                Intent mainIntent = new Intent(getApplicationContext(), MainMenuActivity.class);
-                SplashScreenActivity.this.startActivity(mainIntent);
-                SplashScreenActivity.this.finish();
+                HearingScreeningApplication.activityIntentSwitch(new MainMenuActivity(), SplashScreenActivity.this);
             }
         }, (time * 1000));
     }

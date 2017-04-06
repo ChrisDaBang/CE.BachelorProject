@@ -184,6 +184,12 @@ public class OneUpTwoDownTest
 
     }
 
+    /**
+     * Will be empty if no calibration data could be found in the database.
+     * Should this be true, then there is no grounds for a proper screening,
+     * and one should not be performed.
+     * @return
+     */
     public boolean isCalibrationEmpty()
     {
         return phoneMaxDBOutput.isEmpty();

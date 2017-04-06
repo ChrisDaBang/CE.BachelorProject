@@ -55,6 +55,12 @@ public class Test1Activity extends AppCompatActivity
                     }
                 }
             });
+        noBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HearingScreeningApplication.activityIntentSwitch(new MainMenuActivity(), Test1Activity.this);
+            }
+        });
 
         // For quick database testing purposes only
         Button testBtn = (Button)findViewById(R.id.btn_test_test);
@@ -144,29 +150,28 @@ public class Test1Activity extends AppCompatActivity
      */
     private void playSound()
     {
-            mp = MediaPlayer.create(Test1Activity.this, test.getSoundFile());
-            float amplitude = test.getAmplitude();
-            if(test.getEar() == 0) {
-                mp.setVolume(amplitude, 0f);
-            } else {
-                mp.setVolume(0f, amplitude);
+        HearingScreeningApplication.setMusicStreamVolumeMax(); //Enforce the calibration expected by the test.
+        mp = MediaPlayer.create(Test1Activity.this, test.getSoundFile());
+        float amplitude = test.getAmplitude();
+        if(test.getEar() == 0) {
+            mp.setVolume(amplitude, 0f);
+        } else {
+            mp.setVolume(0f, amplitude);
+        }
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                yesBtn.setEnabled(true);
+                noBtn.setEnabled(true);
+                mp.release();
             }
-            mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mp) {
-                    yesBtn.setEnabled(true);
-                    noBtn.setEnabled(true);
-                    mp.release();
-                }
-            });
-            mp.start();
+        });
+        mp.start();
     }
 
     @Override
     public void onBackPressed()
     {
-        Intent mainIntent = new Intent(getApplicationContext(), MainMenuActivity.class);
-        Test1Activity.this.startActivity(mainIntent);
-        Test1Activity.this.finish();
+        HearingScreeningApplication.activityIntentSwitch(new MainMenuActivity(), this);
     }
 }

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import student.sdu.hearingscreening.R;
+import student.sdu.hearingscreening.application.HearingScreeningApplication;
 
 public class MainMenuActivity extends AppCompatActivity {
 
@@ -33,9 +34,7 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent mainIntent = new Intent(getApplicationContext(), Test1Activity.class);
-                MainMenuActivity.this.startActivity(mainIntent);
-                MainMenuActivity.this.finish(); //Should you finish? Who knows
+                HearingScreeningApplication.activityIntentSwitch(new Test1Activity(), MainMenuActivity.this);
             }
         });
 
@@ -44,9 +43,7 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent mainIntent = new Intent(getApplicationContext(), ResultsActivity.class);
-                MainMenuActivity.this.startActivity(mainIntent);
-                MainMenuActivity.this.finish(); //Should you finish? Who knows
+                HearingScreeningApplication.activityIntentSwitch(new ResultsActivity(), MainMenuActivity.this);
             }
         });
 
@@ -54,9 +51,7 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent mainIntent = new Intent(getApplicationContext(), SettingsActivity.class);
-                MainMenuActivity.this.startActivity(mainIntent);
-                MainMenuActivity.this.finish(); //Should you finish? Who knows
+                HearingScreeningApplication.activityIntentSwitch(new SettingsActivity(), MainMenuActivity.this);
             }
         });
         btn = (Button) findViewById(R.id.btn_dbtest);
@@ -64,9 +59,7 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent mainIntent = new Intent(getApplicationContext(), DBTestActivity.class);
-                MainMenuActivity.this.startActivity(mainIntent);
-                MainMenuActivity.this.finish(); //Should you finish? Who knows
+                HearingScreeningApplication.activityIntentSwitch(new DBTestActivity(), MainMenuActivity.this);
             }
         });
 
@@ -75,9 +68,7 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent mainIntent = new Intent(getApplicationContext(), UserBarchartActivity.class);
-                MainMenuActivity.this.startActivity(mainIntent);
-                MainMenuActivity.this.finish(); //Should you finish? Who knows
+                HearingScreeningApplication.activityIntentSwitch(new UserBarchartActivity(), MainMenuActivity.this);
             }
         });
     }

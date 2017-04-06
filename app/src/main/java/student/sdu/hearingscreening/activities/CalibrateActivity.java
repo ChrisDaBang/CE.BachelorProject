@@ -1,22 +1,16 @@
 package student.sdu.hearingscreening.activities;
 
-import android.content.Context;
 import android.content.Intent;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Handler;
-import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.Map;
 
 import student.sdu.hearingscreening.R;
 import student.sdu.hearingscreening.application.HearingScreeningApplication;
@@ -46,7 +40,7 @@ public class CalibrateActivity extends AppCompatActivity {
         cp = new CalibrationProcessor();
         calibrationVolume = cp.initialCalibrationSettings();
 
-        HearingScreeningApplication.setMusicStreamVolumeFifty();
+        HearingScreeningApplication.setMusicStreamVolumeMax();
     }
 
     /**

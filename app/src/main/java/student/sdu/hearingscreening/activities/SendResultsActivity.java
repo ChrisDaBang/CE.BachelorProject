@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import student.sdu.hearingscreening.R;
+import student.sdu.hearingscreening.application.HearingScreeningApplication;
 
 public class SendResultsActivity extends AppCompatActivity {
 
@@ -105,8 +106,6 @@ public class SendResultsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        Intent mainIntent = new Intent(getApplicationContext(), ResultsActivity.class);
-        SendResultsActivity.this.startActivity(mainIntent);
-        SendResultsActivity.this.finish(); //Should you finish? Who knows
+        HearingScreeningApplication.activityIntentSwitch(new ResultsActivity(), this);
     }
 }
