@@ -8,7 +8,7 @@ public class Result {
 
     private int threshold;
     private int ear;
-    private String frequency;
+    private String frequency; // Make int?
     private int frequencyId;
 
     public Result(int threshold, int ear, String frequency, int frequencyId) {

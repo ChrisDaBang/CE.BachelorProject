@@ -44,4 +44,68 @@ public class ResultManager {
         }
         return results;
     }
+
+    public Result[] getLatestResultsForAnalysis(int ear) {
+        Result[] latest = new Result[8];
+        SQLiteDatabase db = dbh.getReadableDatabase();
+        Cursor res = db.rawQuery("SELECT re.threshold, re.ear, re.freqid, fr.value FROM TBLRESULT re\n" +
+                "LEFT JOIN TBLFREQUENCY fr ON re.freqid = fr.freqid\n" +
+                "WHERE testid = (SELECT MAX(testid) FROM TBLTEST\n)" +
+                "AND re.ear = " + ear + "\n" +
+                "ORDER BY re.freqid", null);
+        if (res.getCount() > 0) {
+            res.moveToFirst();
+            while (!res.isAfterLast()) {
+                int threshold = res.getInt(res.getColumnIndex("threshold"));
+                int testEar = res.getInt(res.getColumnIndex("ear"));
+                String frequency = "" + res.getInt(res.getColumnIndex("value"));
+                int frequencyId = res.getInt(res.getColumnIndex("freqid"));
+                Result r = new Result(threshold, ear, frequency, frequencyId);
+                latest[r.getFrequencyId()] = r;
+
+                res.moveToNext();
+            }
+        }
+        return latest;
+    }
+
+    public boolean checkIfComparisonPossible() {
+        SQLiteDatabase db = dbh.getReadableDatabase();
+        Cursor res = db.rawQuery("SELECT testid FROM TBLTEST", null);
+        if(res.getCount()>=2) {
+            return true;
+        }
+        return false;
+    }
+    public boolean checkIfAtleastOne() {
+        SQLiteDatabase db = dbh.getReadableDatabase();
+        Cursor res = db.rawQuery("SELECT testid FROM TBLTEST", null);
+        if(res.getCount()<=0) {
+            return false;
+        }
+        return true;
+    }
+    public Result[] getBaseResultsForAnalysis(int ear) {
+        Result[] base = new Result[8];
+        SQLiteDatabase db = dbh.getReadableDatabase();
+        Cursor res = db.rawQuery("SELECT re.threshold, re.ear, re.freqid, fr.value FROM TBLRESULT re\n" +
+                "LEFT JOIN TBLFREQUENCY fr ON re.freqid = fr.freqid\n" +
+                "WHERE testid = (SELECT MIN(testid) FROM TBLTEST\n)" +
+                "AND re.ear = " + ear + "\n" +
+                "ORDER BY re.freqid", null);
+        if (res.getCount() > 0) {
+            res.moveToFirst();
+            while (!res.isAfterLast()) {
+                int threshold = res.getInt(res.getColumnIndex("threshold"));
+                int testEar = res.getInt(res.getColumnIndex("ear"));
+                String frequency = "" + res.getInt(res.getColumnIndex("value"));
+                int frequencyId = res.getInt(res.getColumnIndex("freqid"));
+                Result r = new Result(threshold, ear, frequency, frequencyId);
+                base[r.getFrequencyId()] = r;
+
+                res.moveToNext();
+            }
+        }
+        return base;
+    }
 }

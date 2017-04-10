@@ -9,25 +9,27 @@ import android.widget.TextView;
 
 import student.sdu.hearingscreening.R;
 import student.sdu.hearingscreening.application.HearingScreeningApplication;
+import student.sdu.hearingscreening.dataclasses.TestResultAnalyser;
 
 public class ResultsActivity extends AppCompatActivity {
+    TestResultAnalyser analyser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        analyser = new TestResultAnalyser();
         setContentView(R.layout.activity_results);
         setupTextViews();
         setupButtons();
     }
     private void setupTextViews() {
+        analyser.analyseResult();
         TextView t = (TextView) findViewById(R.id.tv_latest);
-        String[] tests = getResources().getStringArray(R.array.tests);
-        String[] result = tests[tests.length-1].split(";");
-        t.setText("Seneste resultat: " + result[2]);
+        t.setText(analyser.getNormativeResponse());
         t = (TextView) findViewById(R.id.tv_latest_suggest);
-        t.setText("Ændring i hørelse: " + result[4]);
+        t.setText(analyser.getRecommendation());
         t = (TextView) findViewById(R.id.tv_latest_change);
-        t.setText("Forslag: " + result[3]);
+        t.setText(analyser.getComparativeResponse());
     }
     private void setupButtons() {
         Button btn = (Button) findViewById(R.id.btn_earlier_results);
