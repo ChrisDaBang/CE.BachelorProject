@@ -21,11 +21,7 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent mainIntent = new Intent(getApplicationContext(), HowToActivity.class);
-                mainIntent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                MainMenuActivity.this.startActivity(mainIntent);
-                overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out2);
-                MainMenuActivity.this.finish();
+                HearingScreeningApplication.activityIntentSwitch(new HowToActivity(), MainMenuActivity.this, R.anim.push_right_in, R.anim.push_right_out2);
             }
         });
 

@@ -11,11 +11,27 @@
 
     <!-- HowToActivity -->
     <string name="howto_tv_tutorial">Før du går i gang skal du sørge for at:
-        \n\u2022 Foretage testen indendørs ved stuetemperatur (21\u2103-25\u2103)
-        \n\u2022 Hej
+        \n\n\u2022 Du foretager testen indendørs ved stuetemperatur (21\u2103-25\u2103)
+        \n\n\u2022 Der er så lidt støj omkring dig som muligt
+        \n\n\u2022 Du har 30 minutter til at tage testen uden afbrydelser
     </string>
     <string name="howto_tv_tutorial2">
-        Når du trykker på knappen \"Start Test\" starter en ny høre test
+        Navigér til hovedmenuen og tryk på knappen \"Start Test\" for at starte en ny høre test
+    </string>
+    <string name="howto_tv_tutorial3">
+        Under testen vil forskellige toner blive spillet i ét øre ad gangen.
+        \nDu bliver derefter spurgt, om du kunne høre tonen.
+        \nHvis du er usikker på, om du hørte tonen, foreslåes det at svare \"JA\".
+    </string>
+    <string name="howto_tv_tutorial4">
+        Navigér til hovedmenuen og tryk på \"Resultater\" for at se dit seneste resultat.
+    </string>
+    <string name="howto_tv_tutorial5">
+        Fra resultat skærmen har du adgang til dine tidligere resultater.
+    </string>
+    <string name="howto_tv_tutorial6">
+        Derfra har du også adgang til sende dine resultater til din praktiserende læge.
+        \n marker én eller flere tests du gerne vil sende, og tryk på send for at sende.
     </string>
 
     <!-- ResultsActivity -->
