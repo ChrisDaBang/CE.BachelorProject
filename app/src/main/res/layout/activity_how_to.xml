@@ -15,17 +15,22 @@
         android:id="@+id/ib_swipe_left"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="166dp"
         android:scaleX="-1"
-        android:background="@drawable/swipe" />
+        android:background="@drawable/swipe"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:text="@string/howto_tv_tutorial"
-        android:textSize="14pt"
+        android:textSize="22sp"
+        android:textAlignment="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/tv_tutorial"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/ib_swipe_left"
+        android:layout_toStartOf="@+id/ib_swipe_right"/>
 
     <ImageButton
         android:id="@+id/ib_swipe_right"

@@ -2,44 +2,44 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_how_to"
+    android:id="@+id/activity_how_to_4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="student.sdu.hearingscreening.activities.HowToActivity">
+    tools:context="student.sdu.hearingscreening.activities.HowTo4Activity">
 
     <TextView
-        android:text="@string/howto_tv_tutorial2"
+        android:text="@string/howto_tv_tutorial4"
         android:textSize="22sp"
         android:textAlignment="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/tv_tutorial2"
+        android:id="@+id/tv_tutorial4"
         android:layout_alignParentTop="true"
         android:layout_marginTop="92dp"
-        android:layout_toEndOf="@+id/ib_swipe_left2"
-        android:layout_toStartOf="@+id/ib_swipe_right2" />
+        android:layout_toEndOf="@+id/ib_swipe_left4"
+        android:layout_toStartOf="@+id/ib_swipe_right4" />
 
     <ImageView
-        android:id="@+id/iv_tutorial2"
+        android:id="@+id/iv_tutorial4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/start_test_knap_billede"
+        app:srcCompat="@drawable/resultater_knap_billede"
         android:layout_alignParentStart="true" />
 
     <ImageButton
-        android:id="@+id/ib_swipe_right2"
+        android:id="@+id/ib_swipe_right4"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/ib_swipe_left2"
+        android:layout_alignTop="@+id/ib_swipe_left4"
         android:background="@drawable/swipe" />
 
     <ImageButton
-        android:id="@+id/ib_swipe_left2"
+        android:id="@+id/ib_swipe_left4"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginTop="166dp"
