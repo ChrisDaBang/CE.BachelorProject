@@ -43,4 +43,12 @@ public class HearingScreeningApplication extends Application {
         oldIntent.startActivity(mainIntent);
         oldIntent.finish();
     }
+    public static void activityIntentSwitch(Activity newIntent, Activity oldIntent, int anim1, int anim2)
+    {
+        Intent mainIntent = new Intent(getContext(), newIntent.getClass());
+        mainIntent.setFlags(mainIntent.FLAG_ACTIVITY_NO_ANIMATION);
+        oldIntent.startActivity(mainIntent);
+        oldIntent.overridePendingTransition(anim1, anim2);
+        oldIntent.finish();
+    }
 }

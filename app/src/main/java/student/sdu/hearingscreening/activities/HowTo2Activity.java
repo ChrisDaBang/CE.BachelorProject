@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import student.sdu.hearingscreening.R;
+import student.sdu.hearingscreening.application.HearingScreeningApplication;
 
 public class HowTo2Activity extends AppCompatActivity {
     private float x1;
@@ -25,11 +26,7 @@ public class HowTo2Activity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent mainIntent = new Intent(getApplicationContext(), HowToActivity.class);
-                mainIntent.setFlags(mainIntent.FLAG_ACTIVITY_NO_ANIMATION);
-                HowTo2Activity.this.startActivity(mainIntent);
-                overridePendingTransition(R.anim.push_right_out, R.anim.push_right_in2);
-                HowTo2Activity.this.finish();
+                HearingScreeningApplication.activityIntentSwitch(new HowToActivity(), HowTo2Activity.this, R.anim.push_right_out, R.anim.push_right_in2);
             }
         });
 
@@ -38,11 +35,7 @@ public class HowTo2Activity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent mainIntent = new Intent(getApplicationContext(), MainMenuActivity.class);
-                mainIntent.setFlags(mainIntent.FLAG_ACTIVITY_NO_ANIMATION);
-                HowTo2Activity.this.startActivity(mainIntent);
-                overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out2);
-                HowTo2Activity.this.finish();
+                HearingScreeningApplication.activityIntentSwitch(new HowTo3Activity(), HowTo2Activity.this, R.anim.push_right_in, R.anim.push_right_out2);
             }
         });
     }
@@ -50,11 +43,7 @@ public class HowTo2Activity extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        Intent mainIntent = new Intent(getApplicationContext(), MainMenuActivity.class);
-        mainIntent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        HowTo2Activity.this.startActivity(mainIntent);
-        overridePendingTransition(R.anim.push_right_out, R.anim.push_right_in2);
-        HowTo2Activity.this.finish();
+        HearingScreeningApplication.activityIntentSwitch(new HowToActivity(), HowTo2Activity.this, R.anim.push_right_out, R.anim.push_right_in2);
     }
 
     @Override
@@ -74,21 +63,14 @@ public class HowTo2Activity extends AppCompatActivity {
                     // Left to Right swipe action
                     if (x2 > x1)
                     {
-                        Intent mainIntent = new Intent(getApplicationContext(), HowToActivity.class);
-                        mainIntent.setFlags(mainIntent.FLAG_ACTIVITY_NO_ANIMATION);
-                        HowTo2Activity.this.startActivity(mainIntent);
-                        overridePendingTransition(R.anim.push_right_out, R.anim.push_right_in2);
-                        HowTo2Activity.this.finish();
+                        HearingScreeningApplication.activityIntentSwitch(new HowToActivity(), HowTo2Activity.this, R.anim.push_right_out, R.anim.push_right_in2);
                     }
 
                     // Right to left swipe action
                     else
                     {
-                        Intent mainIntent = new Intent(getApplicationContext(), MainMenuActivity.class);
-                        mainIntent.setFlags(mainIntent.FLAG_ACTIVITY_NO_ANIMATION);
-                        HowTo2Activity.this.startActivity(mainIntent);
-                        overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out2);
-                        HowTo2Activity.this.finish();
+                        HearingScreeningApplication.activityIntentSwitch(new HowTo3Activity(), HowTo2Activity.this, R.anim.push_right_in, R.anim.push_right_out2);
+
                     }
 
                 }

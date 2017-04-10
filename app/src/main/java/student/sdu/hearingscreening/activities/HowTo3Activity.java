@@ -1,19 +1,16 @@
 package student.sdu.hearingscreening.activities;
 
 import android.content.Intent;
-import android.support.v4.view.MotionEventCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import student.sdu.hearingscreening.R;
 import student.sdu.hearingscreening.application.HearingScreeningApplication;
 
-public class HowToActivity extends AppCompatActivity {
+public class HowTo3Activity extends AppCompatActivity {
     private float x1;
     private float x2;
     private static final int DISTANCE = 100;
@@ -21,30 +18,30 @@ public class HowToActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_how_to);
+        setContentView(R.layout.activity_how_to_3);
 
-        ImageButton btn = (ImageButton) findViewById(R.id.ib_swipe_right);
+        ImageButton btn = (ImageButton) findViewById(R.id.ib_swipe_right3);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                HearingScreeningApplication.activityIntentSwitch(new HowTo2Activity(), HowToActivity.this, R.anim.push_right_in, R.anim.push_right_out2);
+                HearingScreeningApplication.activityIntentSwitch(new HowTo4Activity(), HowTo3Activity.this, R.anim.push_right_in, R.anim.push_right_out2);
             }
         });
 
-        btn = (ImageButton) findViewById(R.id.ib_swipe_left);
+        btn = (ImageButton) findViewById(R.id.ib_swipe_left3);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                HearingScreeningApplication.activityIntentSwitch(new MainMenuActivity(), HowToActivity.this, R.anim.push_right_out, R.anim.push_right_in2);
+                HearingScreeningApplication.activityIntentSwitch(new HowTo2Activity(), HowTo3Activity.this, R.anim.push_right_out, R.anim.push_right_in2);
             }
         });
     }
 
     @Override
     public void onBackPressed() {
-        HearingScreeningApplication.activityIntentSwitch(new MainMenuActivity(), HowToActivity.this, R.anim.push_right_out, R.anim.push_right_in2);
+        HearingScreeningApplication.activityIntentSwitch(new HowTo2Activity(), HowTo3Activity.this, R.anim.push_right_out, R.anim.push_right_in2);
     }
 
     @Override
@@ -64,14 +61,14 @@ public class HowToActivity extends AppCompatActivity {
                     // Left to Right swipe action
                     if (x2 > x1)
                     {
-                        HearingScreeningApplication.activityIntentSwitch(new MainMenuActivity(), HowToActivity.this, R.anim.push_right_out, R.anim.push_right_in2);
+                        HearingScreeningApplication.activityIntentSwitch(new HowTo2Activity(), HowTo3Activity.this, R.anim.push_right_out, R.anim.push_right_in2);
+
                     }
 
                     // Right to left swipe action
                     else
                     {
-                        HearingScreeningApplication.activityIntentSwitch(new HowTo2Activity(), HowToActivity.this, R.anim.push_right_in, R.anim.push_right_out2);
-
+                        HearingScreeningApplication.activityIntentSwitch(new HowTo4Activity(), HowTo3Activity.this, R.anim.push_right_in, R.anim.push_right_out2);
                     }
 
                 }
