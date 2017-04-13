@@ -21,7 +21,7 @@ public class ComparativeAnalyzer
 
     private void analyze(int[] comparativeResultArray)
     {
-        for (int freqNo = 0; freqNo>7; freqNo++)
+        for (int freqNo = 0; freqNo<7; freqNo++)
         {
             int res = comparativeResultArray[freqNo];
             if (res == 0)

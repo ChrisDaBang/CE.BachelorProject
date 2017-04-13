@@ -176,4 +176,139 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("doctor", "Hans Hansen");
         db.insert("TBLSETTINGS", null, contentValues);
     }
+
+    public void testResults() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("testid", 1);
+        cv.put("date", "11-11-11");
+        db.insert("TBLTEST", null, cv);
+        cv = new ContentValues();
+        cv.put("resultid", 1);
+        cv.put("testid", 1);
+        cv.put("threshold", 10);
+        cv.put("freqid", 0);
+        cv.put("ear", 0);
+        db.insert("TBLRESULT", null, cv);
+
+        cv = new ContentValues();
+        cv.put("resultid", 2);
+        cv.put("testid", 1);
+        cv.put("threshold", 10);
+        cv.put("freqid", 1);
+        cv.put("ear", 0);
+        db.insert("TBLRESULT", null, cv);
+
+        cv = new ContentValues();
+        cv.put("resultid", 3);
+        cv.put("testid", 1);
+        cv.put("threshold", 10);
+        cv.put("freqid", 2);
+        cv.put("ear", 0);
+        db.insert("TBLRESULT", null, cv);
+
+        cv = new ContentValues();
+        cv.put("resultid", 4);
+        cv.put("testid", 1);
+        cv.put("threshold", 10);
+        cv.put("freqid", 3);
+        cv.put("ear", 0);
+        db.insert("TBLRESULT", null, cv);
+
+        cv = new ContentValues();
+        cv.put("resultid", 5);
+        cv.put("testid", 1);
+        cv.put("threshold", 10);
+        cv.put("freqid", 4);
+        cv.put("ear", 0);
+        db.insert("TBLRESULT", null, cv);
+
+        cv = new ContentValues();
+        cv.put("resultid", 6);
+        cv.put("testid", 1);
+        cv.put("threshold", 10);
+        cv.put("freqid", 5);
+        cv.put("ear", 0);
+        db.insert("TBLRESULT", null, cv);
+
+        cv = new ContentValues();
+        cv.put("resultid", 7);
+        cv.put("testid", 1);
+        cv.put("threshold", 10);
+        cv.put("freqid", 6);
+        cv.put("ear", 0);
+        db.insert("TBLRESULT", null, cv);
+
+        cv = new ContentValues();
+        cv.put("resultid", 8);
+        cv.put("testid", 1);
+        cv.put("threshold", 10);
+        cv.put("freqid", 7);
+        cv.put("ear", 0);
+        db.insert("TBLRESULT", null, cv);
+
+        cv = new ContentValues();
+        cv.put("resultid", 9);
+        cv.put("testid", 1);
+        cv.put("threshold", 10);
+        cv.put("freqid", 0);
+        cv.put("ear", 1);
+        db.insert("TBLRESULT", null, cv);
+
+        cv = new ContentValues();
+        cv.put("resultid", 10);
+        cv.put("testid", 1);
+        cv.put("threshold", 10);
+        cv.put("freqid", 1);
+        cv.put("ear", 1);
+        db.insert("TBLRESULT", null, cv);
+
+        cv = new ContentValues();
+        cv.put("resultid", 11);
+        cv.put("testid", 1);
+        cv.put("threshold", 10);
+        cv.put("freqid", 2);
+        cv.put("ear", 1);
+        db.insert("TBLRESULT", null, cv);
+
+        cv = new ContentValues();
+        cv.put("resultid", 12);
+        cv.put("testid", 1);
+        cv.put("threshold", 10);
+        cv.put("freqid", 3);
+        cv.put("ear", 1);
+        db.insert("TBLRESULT", null, cv);
+
+        cv = new ContentValues();
+        cv.put("resultid", 13);
+        cv.put("testid", 1);
+        cv.put("threshold", 10);
+        cv.put("freqid", 4);
+        cv.put("ear", 1);
+        db.insert("TBLRESULT", null, cv);
+
+        cv = new ContentValues();
+        cv.put("resultid", 14);
+        cv.put("testid", 1);
+        cv.put("threshold", 10);
+        cv.put("freqid", 5);
+        cv.put("ear", 1);
+        db.insert("TBLRESULT", null, cv);
+
+        cv = new ContentValues();
+        cv.put("resultid", 15);
+        cv.put("testid", 1);
+        cv.put("threshold", 10);
+        cv.put("freqid", 6);
+        cv.put("ear", 1);
+        db.insert("TBLRESULT", null, cv);
+
+        cv = new ContentValues();
+        cv.put("resultid", 16);
+        cv.put("testid", 1);
+        cv.put("threshold", 10);
+        cv.put("freqid", 7);
+        cv.put("ear", 1);
+        db.insert("TBLRESULT", null, cv);
+    }
 }

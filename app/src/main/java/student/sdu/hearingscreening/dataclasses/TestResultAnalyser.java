@@ -55,6 +55,8 @@ public class TestResultAnalyser
             for (freqNo = 0; freqNo < 7; freqNo++) {
                 comparativeResultLeft[freqNo] = baseLeftEarResult[freqNo].getThreshold() - newLeftEarResult[freqNo].getThreshold();
                 comparativeResultRight[freqNo] = baseRightEarResult[freqNo].getThreshold() - newRightEarResult[freqNo].getThreshold();
+                System.out.println(comparativeResultLeft[freqNo]);
+                System.out.println(comparativeResultRight[freqNo]);
             }
 
             makeComparativeResponseAndRecommendation();
@@ -79,7 +81,7 @@ public class TestResultAnalyser
         // // TODO: 10-04-2017 See ComparativeAnalyzer class
         if (leftAnalysis.getSame() == 8 && rightAnalysis.getSame() == 8)
         {
-            comparativeResponse = "Der er ingen ændring i din hørelse på venstre øre.";
+            comparativeResponse = "Der er ingen ændring i din hørelse";
         }
         else if((leftAnalysis.getNegative() > 0 || rightAnalysis.getNegative() > 0)
                 && (leftAnalysis.getMediumNegative() == 0 && rightAnalysis.getMediumNegative() == 0)
