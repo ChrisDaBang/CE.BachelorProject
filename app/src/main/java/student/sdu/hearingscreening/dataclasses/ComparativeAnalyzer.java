@@ -11,19 +11,19 @@ public class ComparativeAnalyzer
     private int negative = 0;
     private int mediumNegative = 0;
     private int badNegative = 0;
-    private String negativeRes = null;
-    private String worrysomeNegativeRes = null;
+    private String negativeRes = "";
+    private String worrysomeNegativeRes = "";
 
-    public ComparativeAnalyzer(int[] comparativeResultArray)
+    public ComparativeAnalyzer(float[] comparativeResultArray)
     {
         analyze(comparativeResultArray);
     }
 
-    private void analyze(int[] comparativeResultArray)
+    private void analyze(float[] comparativeResultArray)
     {
         for (int freqNo = 0; freqNo<7; freqNo++)
         {
-            int res = comparativeResultArray[freqNo];
+            float res = comparativeResultArray[freqNo];
             if (res == 0)
             {
                 same++;

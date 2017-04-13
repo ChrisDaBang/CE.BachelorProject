@@ -1,6 +1,8 @@
 package student.sdu.hearingscreening.dataclasses;
 
 import student.sdu.hearingscreening.databasemanagement.ResultManager;
+import student.sdu.hearingscreening.translators.ITranslator;
+import student.sdu.hearingscreening.translators.SennheiserHDA200Translator;
 
 /**
  * Created by Chris on 10-04-2017.
@@ -15,18 +17,20 @@ public class TestResultAnalyser
     private int freqNo;
     private boolean isAnalysed;
 
-    private int[] comparativeResultLeft;
-    private int[] comparativeResultRight;
+    private float[] comparativeResultLeft;
+    private float[] comparativeResultRight;
     private String comparativeResponse;
     private String recommendation;
     private String normativeResponse;
+
+    private ITranslator translator;
 
     public TestResultAnalyser()
     {
         freqNo = 0;
         isAnalysed = false;
-        comparativeResultLeft = new int[8];
-        comparativeResultRight = new int[8];
+        comparativeResultLeft = new float[8];
+        comparativeResultRight = new float[8];
         comparativeResponse = "No comparison done";
         normativeResponse = "";
         initBaseEarResults();
@@ -143,7 +147,7 @@ public class TestResultAnalyser
         String leftResult = "";
         String rightResult = "";
         for(Result r : newLeftEarResult) {
-            int threshold = r.getThreshold();
+            float threshold = r.getThreshold();
             if(threshold < 25) {
                 //do nothing
             } else if (threshold >= 25 && threshold < 40) {
@@ -164,7 +168,7 @@ public class TestResultAnalyser
             }
         }
         for(Result r : newRightEarResult) {
-            int threshold = r.getThreshold();
+            float threshold = r.getThreshold();
             if(threshold < 25) {
                 //do nothing
             } else if (threshold >= 25 && threshold < 40) {

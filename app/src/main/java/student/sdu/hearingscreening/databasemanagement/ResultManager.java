@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 import student.sdu.hearingscreening.application.HearingScreeningApplication;
 import student.sdu.hearingscreening.dataclasses.Result;
+import student.sdu.hearingscreening.translators.ITranslator;
+import student.sdu.hearingscreening.translators.SennheiserHDA200Translator;
 
 /**
  * Created by Bogs on 20-03-2017.
@@ -14,9 +16,11 @@ import student.sdu.hearingscreening.dataclasses.Result;
 
 public class ResultManager {
     private DBHelper dbh;
+    private ITranslator translator;
 
     public ResultManager() {
         dbh = new DBHelper(HearingScreeningApplication.getContext());
+        translator = new SennheiserHDA200Translator();
     }
 
     public ArrayList<Result> getLatestResults() {
@@ -36,7 +40,7 @@ public class ResultManager {
                 int ear = res.getInt(res.getColumnIndex("ear"));
                 String frequency =""+ res.getInt(res.getColumnIndex("value"));
                 int frequencyId = res.getInt(res.getColumnIndex("freqid"));
-                Result r = new Result(threshold, ear, frequency, frequencyId);
+                Result r = new Result(translator.translate(threshold, frequencyId), ear, frequency, frequencyId);
                 results.add(r);
 
                 res.moveToNext();
@@ -60,7 +64,7 @@ public class ResultManager {
                 int testEar = res.getInt(res.getColumnIndex("ear"));
                 String frequency = "" + res.getInt(res.getColumnIndex("value"));
                 int frequencyId = res.getInt(res.getColumnIndex("freqid"));
-                Result r = new Result(threshold, ear, frequency, frequencyId);
+                Result r = new Result(translator.translate(threshold, frequencyId), ear, frequency, frequencyId);
                 latest[r.getFrequencyId()] = r;
 
                 res.moveToNext();
@@ -100,7 +104,7 @@ public class ResultManager {
                 int testEar = res.getInt(res.getColumnIndex("ear"));
                 String frequency = "" + res.getInt(res.getColumnIndex("value"));
                 int frequencyId = res.getInt(res.getColumnIndex("freqid"));
-                Result r = new Result(threshold, ear, frequency, frequencyId);
+                Result r = new Result(translator.translate(threshold, frequencyId), ear, frequency, frequencyId);
                 base[r.getFrequencyId()] = r;
 
                 res.moveToNext();
