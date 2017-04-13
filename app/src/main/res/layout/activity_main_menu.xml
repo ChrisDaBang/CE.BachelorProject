@@ -56,10 +56,11 @@
         android:id="@+id/btn_barchart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Barchart test"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/btn_settings" />
+        android:layout_below="@+id/btn_settings"
+        android:text="Barchart test"
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/btn_dbtest"
@@ -68,5 +69,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/btn_settings"
-        android:text="Database test" />
+        android:text="Database test"
+        android:visibility="invisible" />
 </RelativeLayout>

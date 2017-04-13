@@ -129,12 +129,6 @@ public class Test1Activity extends AppCompatActivity
                 @Override
                 public void onClick(View v) {
                     testOver = test.answer(true);
-                    testOver = test.answer(false);
-                    testOver = test.answer(false);
-                    testOver = test.answer(true);
-                    testOver = test.answer(false);
-                    testOver = test.answer(false);
-                    testOver = test.answer(true);
                     test();
                 }
             });
