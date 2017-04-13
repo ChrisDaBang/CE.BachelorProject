@@ -6,19 +6,19 @@ package student.sdu.hearingscreening.dataclasses;
 
 public class Result {
 
-    private int threshold;
+    private float threshold;
     private int ear;
     private String frequency; // Make int?
     private int frequencyId;
 
-    public Result(int threshold, int ear, String frequency, int frequencyId) {
+    public Result(float threshold, int ear, String frequency, int frequencyId) {
         this.threshold = threshold;
         this.ear = ear;
         this.frequency = frequency;
         this.frequencyId = frequencyId;
     }
 
-    public int getThreshold() {
+    public float getThreshold() {
         return threshold;
     }
 

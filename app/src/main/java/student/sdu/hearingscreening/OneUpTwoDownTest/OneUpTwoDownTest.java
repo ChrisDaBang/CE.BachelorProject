@@ -99,7 +99,7 @@ public class OneUpTwoDownTest
                 currentlyInCatchTrial = false;
             }
 
-            if(testFreqNo >=7 && ear == 1) //All testing done, save results
+            if(testFreqNo > 7 && ear == 0) //All testing done, save results
             {
                 testOver = true;
                 TestDAO dao = new TestDAO(HearingScreeningApplication.getContext());
