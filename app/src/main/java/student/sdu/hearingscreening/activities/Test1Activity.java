@@ -112,7 +112,7 @@ public class Test1Activity extends AppCompatActivity
         else
         {
             topInfoTv.setText(R.string.test_tv_top_text_2);
-            bottomInfoTv.setVisibility(View.VISIBLE);
+            bottomInfoTv.setVisibility(View.INVISIBLE);
             yesBtn.setEnabled(false);
             noBtn.setEnabled(false);
 
@@ -161,8 +161,15 @@ public class Test1Activity extends AppCompatActivity
         mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
-                yesBtn.setEnabled(true);
-                noBtn.setEnabled(true);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        topInfoTv.setText("Kunne du høre den?");
+                        yesBtn.setEnabled(true);
+                        noBtn.setEnabled(true);
+                    }
+                }, 500);
                 mp.release();
             }
         });
