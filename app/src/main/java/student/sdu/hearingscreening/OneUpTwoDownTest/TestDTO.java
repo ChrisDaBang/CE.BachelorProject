@@ -14,8 +14,8 @@ public class TestDTO
     private Map<Integer, ArrayList<TestEntry>> rightEarEntries;
     private Map<Integer, ArrayList<TestEntry>> leftEarEntries;
     // Integer frequency, Integer dbhl;
-    private Map<Integer, Integer> resultRightEar;
-    private Map<Integer, Integer> resultLeftEar;
+    private Map<Integer, Float> resultRightEar;
+    private Map<Integer, Float> resultLeftEar;
 
     public TestDTO()
     {
@@ -47,17 +47,17 @@ public class TestDTO
         }
     }
 
-    public void addResultRightEar(int frequency, int dbhl)
+    public void addResultRightEar(int frequency, float dbhl)
     {
         addResult(true, frequency, dbhl);
     }
 
-    public void addResultLeftEar(int frequency, int dbhl)
+    public void addResultLeftEar(int frequency, float dbhl)
     {
         addResult(false, frequency, dbhl);
     }
 
-    private void addResult(boolean ear, int frequency, int dbhl)
+    private void addResult(boolean ear, int frequency, float dbhl)
     {
         if (ear)
         {
@@ -77,11 +77,11 @@ public class TestDTO
         return leftEarEntries;
     }
 
-    public Map<Integer, Integer> getResultRightEar() {
+    public Map<Integer, Float> getResultRightEar() {
         return resultRightEar;
     }
 
-    public Map<Integer, Integer> getResultLeftEar() {
+    public Map<Integer, Float> getResultLeftEar() {
         return resultLeftEar;
     }
 }

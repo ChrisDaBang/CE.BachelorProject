@@ -96,6 +96,7 @@ public class UserBarchartActivity extends AppCompatActivity {
         cc.setScaleMinima(1f, 1f);
         cc.getLegend().setEnabled(false);
         cc.getDescription().setEnabled(false);
+
     }
     @Override
     public void onBackPressed()

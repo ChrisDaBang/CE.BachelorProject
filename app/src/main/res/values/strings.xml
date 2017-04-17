@@ -37,12 +37,6 @@
     <!-- ResultsActivity -->
     <string name="results_btn_earlier_results">Tidligere resultater</string>
     <string name="results_btn_send_results">Send resultater til læge</string>
-    <string-array name="tests">
-        <item>1;08/02/2017;normal hørelse;ingen ændring;forsæt med brug af app</item>
-        <item>2;09/02/2017;normal hørelse;ingen ændring;forsæt med brug af app</item>
-        <item>3;10/02/2017;normal hørelse;ingen ændring;forsæt med brug af app</item>
-        <item>4;11/02/2017;normal hørelse;ingen ændring;forsæt med brug af app</item>
-    </string-array>
 
     <!-- TestActivity -->
     <string name="test_tv_top_text_1"> Er du klar til at tage testen?</string>

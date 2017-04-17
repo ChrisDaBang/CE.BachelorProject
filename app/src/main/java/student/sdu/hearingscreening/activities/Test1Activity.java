@@ -62,15 +62,6 @@ public class Test1Activity extends AppCompatActivity
             }
         });
 
-        // For quick database testing purposes only
-        Button testBtn = (Button)findViewById(R.id.btn_test_test);
-        testBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                test.testTest();
-            }
-        });
-        //
     }
 
     /**
