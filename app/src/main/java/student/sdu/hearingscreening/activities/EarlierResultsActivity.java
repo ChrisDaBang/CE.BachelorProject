@@ -5,12 +5,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ExpandableListView;
 
+import java.util.ArrayList;
+
 import student.sdu.hearingscreening.R;
 import student.sdu.hearingscreening.adapters.EarlierResultsListAdapter;
 import student.sdu.hearingscreening.application.HearingScreeningApplication;
+import student.sdu.hearingscreening.databasemanagement.ResultManager;
+import student.sdu.hearingscreening.dataclasses.Test;
+import student.sdu.hearingscreening.dataclasses.TestResultAnalyser;
 
 public class EarlierResultsActivity extends AppCompatActivity {
-
+    ResultManager rm = new ResultManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,25 +28,19 @@ public class EarlierResultsActivity extends AppCompatActivity {
         ExpandableListView lv = (ExpandableListView) findViewById(R.id.elv_results);
         lv.setGroupIndicator(null);
         lv.setChildIndicator(null);
-        String[] tests = getResources().getStringArray(R.array.tests);
-        String[] titles = new String[tests.length];
-        String[][] contents = new String[tests.length][0];
-        for(int i = 0; i<tests.length; i++) {
-            String temp = tests[i];
-            String[] details = temp.split(";");
-            String title = "Test #" + details[0] + " " + details[1];
-            titles[i] = title;
-            String[] temp2 = new String[3];
-            for(int k = 0; k<3; k++) {
-                if(k==0) {
-                    temp2[k] = "Resultat: " + details[k+2];
-                } else if (k==1) {
-                    temp2[k] = "Ændring i hørelse: " + details[k+2];
-                } else {
-                    temp2[k] = "Forslag: " + details[k+2];
-                }
-            }
-            contents[i] = temp2;
+        ArrayList<Test> tests = rm.getTests();
+        String[] titles = new String[tests.size()];
+        String[][] contents = new String[tests.size()][0];
+        for(Test t : tests) {
+            System.out.println("TESTSTSTS " + t.getTestNo());
+            TestResultAnalyser tr = new TestResultAnalyser(t.getTestNo());
+            tr.analyseResult();
+            titles[t.getTestNo()-1] = "Test #" + t.getTestNo() + " " + t.getDate();
+            String[] temp = new String[3];
+            temp[0] = tr.getNormativeResponse();
+            temp[1] = tr.getComparativeResponse();
+            temp[2] = tr.getRecommendation();
+            contents[t.getTestNo()-1] = temp;
         }
         EarlierResultsListAdapter la  = new EarlierResultsListAdapter(this, contents, titles);
         lv.setAdapter(la);

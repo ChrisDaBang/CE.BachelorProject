@@ -32,7 +32,7 @@ public class DBHelper extends SQLiteOpenHelper {
             ");";
     private static String DB_TABLETESTENTRIES_CREATION = "CREATE TABLE IF NOT EXISTS `TBLTESTENTRIES` (\n" +
             "  `testid` INTEGER,\n" +
-            "  `decibel` INTEGER,\n" +
+            "  `decibel` FLOAT,\n" +
             "  `answer` BOOLEAN,\n" +
             "  `sequenceid` INTEGER,\n" +
             "  `entryid` INTEGER PRIMARY KEY,\n" +
@@ -42,7 +42,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static String DB_TABLERESULT_CREATION = "CREATE TABLE IF NOT EXISTS `TBLRESULT` (\n" +
             "  `resultid` integer PRIMARY KEY,\n" +
             "  `testid` integer,\n" +
-            "  `threshold` integer,\n" +
+            "  `threshold` FLOAT,\n" +
             "  `freqid` integer,\n" +
             "  `ear` integer\n" +
             ");";
@@ -56,7 +56,7 @@ public class DBHelper extends SQLiteOpenHelper {
             ");";
     private static String DB_TABLECALIBRATION_CREATION = "CREATE TABLE IF NOT EXISTS `TBLCALIBRATION` (\n" +
             "   `freqid` integer PRIMARY KEY, \n" +
-            "   `maxoutput` integer\n" +
+            "   `maxoutput` FLOAT\n" +
             ");";
 
 

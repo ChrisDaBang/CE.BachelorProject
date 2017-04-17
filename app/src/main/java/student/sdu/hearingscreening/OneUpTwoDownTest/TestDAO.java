@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -29,7 +31,8 @@ public class TestDAO {
         ContentValues contentValues = new ContentValues();
         contentValues.put("testid", testId);
         Date current = new Date();
-        contentValues.put("date", current.toString());
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        contentValues.put("date", formatter.format(current));
         db.insert("TBLTEST", null, contentValues);
 
         //Put left ear testentries in db
@@ -60,7 +63,7 @@ public class TestDAO {
         }
         //Put left ear results in db
         for(Integer freqid : test.getResultLeftEar().keySet()) {
-            Integer threshold = test.getResultLeftEar().get(freqid);
+            Float threshold = test.getResultLeftEar().get(freqid);
             contentValues = new ContentValues();
             contentValues.put("testid", testId);
             contentValues.put("threshold", threshold);
@@ -70,7 +73,7 @@ public class TestDAO {
         }
         //Put right ear results in db
         for(Integer freqid : test.getResultRightEar().keySet()) {
-            Integer threshold = test.getResultRightEar().get(freqid);
+            Float threshold = test.getResultRightEar().get(freqid);
             contentValues = new ContentValues();
             contentValues.put("testid", testId);
             contentValues.put("threshold", threshold);
@@ -92,9 +95,9 @@ public class TestDAO {
         return testid;
     }
 
-    public Map<Integer, Integer> getCalibrationValues()
+    public Map<Integer, Float> getCalibrationValues()
     {
-        Map<Integer, Integer> calibrationValues = new HashMap<>();
+        Map<Integer, Float> calibrationValues = new HashMap<>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor res = db.rawQuery("SELECT * FROM TBLCALIBRATION", null);
         if(res.getCount() > 0)
@@ -103,7 +106,7 @@ public class TestDAO {
             while (!res.isAfterLast())
             {
                 int freqID = res.getInt(res.getColumnIndex("freqid"));
-                int decibelMax = res.getInt(res.getColumnIndex("maxoutput"));
+                float decibelMax = res.getFloat(res.getColumnIndex("maxoutput"));
                 calibrationValues.put(freqID, decibelMax);
                 res.moveToNext();
             }

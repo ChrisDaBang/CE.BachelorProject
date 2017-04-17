@@ -19,7 +19,7 @@ public class CalibrationProcessor
     private int calibrationFreqNo;
     private boolean calibrationOver;
     private int[] files;
-    private Map<Integer, Integer> frequencyAtMax;
+    private Map<Integer, Float> frequencyAtMax;
     private DBHelper dbHelper;
 
     /**
@@ -39,7 +39,7 @@ public class CalibrationProcessor
      * @param db
      * @return
      */
-    public void calibrate(int db)
+    public void calibrate(float db)
     {
         frequencyAtMax.put(calibrationFreqNo, db);
 

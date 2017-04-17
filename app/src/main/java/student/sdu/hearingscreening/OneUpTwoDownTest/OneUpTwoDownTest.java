@@ -18,7 +18,7 @@ public class OneUpTwoDownTest
     private int dbhl;
     private int startDBHL = 40;
     private int testFreqNo = 0;
-    private Map<Integer, Integer> phoneMaxDBOutput;
+    private Map<Integer, Float> phoneMaxDBOutput;
     private int sequenceTracker = 0;
     private ArrayList<TestEntry> entries;
     private int ear; // 0 Left, 1 Right

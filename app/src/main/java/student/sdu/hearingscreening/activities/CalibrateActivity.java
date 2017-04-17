@@ -50,7 +50,7 @@ public class CalibrateActivity extends AppCompatActivity {
      * reflect this state and give the user the option to move on to another activity.
      * @param db
      */
-    private void calibrate(int db)
+    private void calibrate(float db)
     {
         cp.calibrate(db);
         updateProgressBar();
@@ -140,7 +140,7 @@ public class CalibrateActivity extends AppCompatActivity {
                 {
                     btnEnter.setEnabled(false);
                     etNrInput.setEnabled(false);
-                    calibrate(Integer.valueOf(etNrInput.getText().toString()));
+                    calibrate(Float.parseFloat(etNrInput.getText().toString()));
                     etNrInput.getText().clear();
                 }
                 else

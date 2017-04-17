@@ -36,6 +36,16 @@ public class TestResultAnalyser
         initBaseEarResults();
         initNewestEarResults();
     }
+    public TestResultAnalyser(int testNo) {
+        freqNo = 0;
+        isAnalysed = false;
+        comparativeResultLeft = new float[8];
+        comparativeResultRight = new float[8];
+        comparativeResponse = "No comparison done";
+        normativeResponse = "";
+        initBaseEarResults();
+        initEarResults(testNo);
+    }
 
 
     private void initBaseEarResults()
@@ -50,6 +60,12 @@ public class TestResultAnalyser
         ResultManager rm = new ResultManager();
         newLeftEarResult = rm.getLatestResultsForAnalysis(0);
         newRightEarResult = rm.getLatestResultsForAnalysis(1);
+    }
+    private void initEarResults(int testNo)
+    {
+        ResultManager rm = new ResultManager();
+        newLeftEarResult = rm.getSpecificResultsForAnalysis(testNo, 0);
+        newRightEarResult = rm.getSpecificResultsForAnalysis(testNo, 1);
     }
 
     public void analyseResult()

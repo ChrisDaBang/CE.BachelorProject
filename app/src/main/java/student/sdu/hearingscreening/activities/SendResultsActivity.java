@@ -10,12 +10,17 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import student.sdu.hearingscreening.R;
 import student.sdu.hearingscreening.application.HearingScreeningApplication;
+import student.sdu.hearingscreening.databasemanagement.ResultManager;
+import student.sdu.hearingscreening.dataclasses.Test;
 
 public class SendResultsActivity extends AppCompatActivity {
 
     ListView lv;
+    ResultManager rm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -23,22 +28,18 @@ public class SendResultsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_results);
         lv = (ListView) findViewById(R.id.lv_results);
+        rm = new ResultManager();
         setupListView();
         setupButtons();
     }
 
     private void setupListView()
     {
-        String[] tests = getResources().getStringArray(R.array.tests);
-        String[] titles = new String[tests.length];
-        for(int i = 0; i<tests.length; i++)
-        {
-            String temp = tests[i];
-            String[] details = temp.split(";");
-            String title = "Test #" + details[0] + " " + details[1];
-            titles[i] = title;
+        ArrayList<Test> tests = rm.getTests();
+        String[] titles = new String[tests.size()];
+        for(Test t : tests) {
+            titles[t.getTestNo()-1] = "Test #" + t.getTestNo() + " " + t.getDate();
         }
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_multiple_choice,
                 titles);

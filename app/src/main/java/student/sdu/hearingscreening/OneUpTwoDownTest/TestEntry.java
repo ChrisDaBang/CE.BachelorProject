@@ -5,7 +5,7 @@ package student.sdu.hearingscreening.OneUpTwoDownTest;
  */
 
 public class TestEntry {
-    private int dbhl;
+    private float dbhl;
     private boolean answer;
     private int sequenceId;
     private boolean catchtrial;
@@ -17,7 +17,7 @@ public class TestEntry {
         this.catchtrial = catchtrial;
     }
 
-    public int getDbhl() {
+    public float getDbhl() {
         return dbhl;
     }
 

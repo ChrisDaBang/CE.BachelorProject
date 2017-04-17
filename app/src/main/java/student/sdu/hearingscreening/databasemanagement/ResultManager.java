@@ -3,10 +3,12 @@ package student.sdu.hearingscreening.databasemanagement;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import student.sdu.hearingscreening.application.HearingScreeningApplication;
 import student.sdu.hearingscreening.dataclasses.Result;
+import student.sdu.hearingscreening.dataclasses.Test;
 import student.sdu.hearingscreening.translators.ITranslator;
 import student.sdu.hearingscreening.translators.SennheiserHDA200Translator;
 
@@ -73,6 +75,30 @@ public class ResultManager {
         return latest;
     }
 
+    public Result[] getSpecificResultsForAnalysis(int testno, int ear) {
+        Result[] latest = new Result[8];
+        SQLiteDatabase db = dbh.getReadableDatabase();
+        Cursor res = db.rawQuery("SELECT re.threshold, re.ear, re.freqid, fr.value FROM TBLRESULT re\n" +
+                "LEFT JOIN TBLFREQUENCY fr ON re.freqid = fr.freqid\n" +
+                "WHERE testid = " + testno + "\n" +
+                "AND re.ear = " + ear + "\n" +
+                "ORDER BY re.freqid", null);
+        if (res.getCount() > 0) {
+            res.moveToFirst();
+            while (!res.isAfterLast()) {
+                int threshold = res.getInt(res.getColumnIndex("threshold"));
+                int testEar = res.getInt(res.getColumnIndex("ear"));
+                String frequency = "" + res.getInt(res.getColumnIndex("value"));
+                int frequencyId = res.getInt(res.getColumnIndex("freqid"));
+                Result r = new Result(translator.translate(threshold, frequencyId), ear, frequency, frequencyId);
+                latest[r.getFrequencyId()] = r;
+
+                res.moveToNext();
+            }
+        }
+        return latest;
+    }
+
     public boolean checkIfComparisonPossible() {
         SQLiteDatabase db = dbh.getReadableDatabase();
         Cursor res = db.rawQuery("SELECT testid FROM TBLTEST", null);
@@ -111,5 +137,21 @@ public class ResultManager {
             }
         }
         return base;
+    }
+    public ArrayList<Test> getTests() {
+        ArrayList<Test> tests = new ArrayList();
+        SQLiteDatabase db = dbh.getReadableDatabase();
+        Cursor res = db.rawQuery("SELECT testid, date FROM TBLTEST", null);
+        if(res.getCount() > 0) {
+            res.moveToFirst();
+            while(!res.isAfterLast()) {
+                int testno = res.getInt(res.getColumnIndex("testid"));
+                String date = res.getString(res.getColumnIndex("date"));
+                Test t = new Test(testno, date);
+                tests.add(t);
+                res.moveToNext();
+            }
+        }
+        return tests;
     }
 }

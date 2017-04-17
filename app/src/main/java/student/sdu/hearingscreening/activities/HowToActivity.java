@@ -16,7 +16,7 @@ import student.sdu.hearingscreening.application.HearingScreeningApplication;
 public class HowToActivity extends AppCompatActivity {
     private float x1;
     private float x2;
-    private static final int DISTANCE = 100;
+    private static final int DISTANCE = 50;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

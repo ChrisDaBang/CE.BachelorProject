@@ -42,7 +42,7 @@ public class EarlierResultsListAdapter extends BaseExpandableListAdapter {
         if(row == null) {
             row = new TextView(context);
         }
-        row.setText("\t\t"+contents[groupPosition][childPosition]);
+        row.setText(contents[groupPosition][childPosition]);
         row.setTextSize(20);
         row.setTextColor(Color.BLACK);
         return row;
