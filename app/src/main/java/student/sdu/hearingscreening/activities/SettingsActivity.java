@@ -35,13 +35,6 @@ public class SettingsActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event)
-    {
-        HearingScreeningApplication.activityIntentSwitch(new MainMenuActivity(), this);
-
-        return super.onTouchEvent(event);
-    }
 
     @Override
     public void onBackPressed()
