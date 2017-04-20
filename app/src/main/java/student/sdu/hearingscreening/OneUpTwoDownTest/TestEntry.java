@@ -20,15 +20,13 @@ public class TestEntry {
     public float getDbhl() {
         return dbhl;
     }
-
     public boolean getAnswer() {
         return answer;
     }
-
     public int getSequenceId() {
         return sequenceId;
     }
-    public boolean getCatchTrial() {
+    public boolean isCatchTrial() {
         return catchtrial;
     }
 

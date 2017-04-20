@@ -7,18 +7,21 @@ import java.util.Map;
  * Created by Bogs on 13-04-2017.
  */
 
-public class SennheiserHDA200Translator implements ITranslator {
+public class SennheiserHDA200Translator implements ITranslator
+{
     public SennheiserHDA200Translator() {
         initializeMap();
     }
     private Map<Integer, Float> translateMap;
 
     @Override
-    public float translate(float input, int frequencyNumber) {
+    public float translate(float input, int frequencyNumber)
+    {
         return input - translateMap.get(frequencyNumber);
     }
 
-    private void initializeMap() {
+    private void initializeMap()
+    {
         translateMap = new HashMap();
         translateMap.put(0, 18.0f);
         translateMap.put(1, 11.0f);
@@ -28,7 +31,5 @@ public class SennheiserHDA200Translator implements ITranslator {
         translateMap.put(5, 9.5f);
         translateMap.put(6, 17.0f);
         translateMap.put(7, 17.5f);
-
     }
-
 }

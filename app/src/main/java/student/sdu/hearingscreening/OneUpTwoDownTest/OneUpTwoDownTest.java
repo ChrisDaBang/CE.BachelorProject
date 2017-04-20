@@ -1,12 +1,13 @@
 package student.sdu.hearingscreening.OneUpTwoDownTest;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
 import student.sdu.hearingscreening.R;
 import student.sdu.hearingscreening.application.HearingScreeningApplication;
+import student.sdu.hearingscreening.databasemanagement.TestDAO;
+import student.sdu.hearingscreening.dataclasses.TestDTO;
 
 /**
  * Created by Chris on 13-03-2017.
@@ -73,7 +74,7 @@ public class OneUpTwoDownTest
         for(TestEntry entry : entries)
         {
             if(entry.getDbhl() == this.dbhl) {
-                if(entry.getAnswer() && !entry.getCatchTrial()) {
+                if(entry.getAnswer() && !entry.isCatchTrial()) {
                     positiveResponses++;
                 }
             }

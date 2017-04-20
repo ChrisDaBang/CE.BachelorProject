@@ -1,6 +1,5 @@
 package student.sdu.hearingscreening.activities;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +8,7 @@ import android.widget.TextView;
 
 import student.sdu.hearingscreening.R;
 import student.sdu.hearingscreening.application.HearingScreeningApplication;
-import student.sdu.hearingscreening.dataclasses.TestResultAnalyser;
+import student.sdu.hearingscreening.resultAnalysis.TestResultAnalyser;
 
 public class ResultsActivity extends AppCompatActivity {
     TestResultAnalyser analyser;

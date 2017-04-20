@@ -1,8 +1,10 @@
-package student.sdu.hearingscreening.OneUpTwoDownTest;
+package student.sdu.hearingscreening.dataclasses;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import student.sdu.hearingscreening.OneUpTwoDownTest.TestEntry;
 
 /**
  * Created by Chris on 13-03-2017.
@@ -10,10 +12,8 @@ import java.util.Map;
 
 public class TestDTO
 {
-    // Integer frequency
     private Map<Integer, ArrayList<TestEntry>> rightEarEntries;
     private Map<Integer, ArrayList<TestEntry>> leftEarEntries;
-    // Integer frequency, Integer dbhl;
     private Map<Integer, Float> resultRightEar;
     private Map<Integer, Float> resultLeftEar;
 

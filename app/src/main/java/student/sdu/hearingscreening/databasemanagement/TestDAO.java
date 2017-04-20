@@ -1,4 +1,4 @@
-package student.sdu.hearingscreening.OneUpTwoDownTest;
+package student.sdu.hearingscreening.databasemanagement;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,12 +7,12 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import student.sdu.hearingscreening.databasemanagement.DBHelper;
+import student.sdu.hearingscreening.dataclasses.TestDTO;
+import student.sdu.hearingscreening.OneUpTwoDownTest.TestEntry;
 
 /**
  * Created by Bogs on 13-03-2017.
@@ -44,7 +44,7 @@ public class TestDAO {
                 contentValues.put("answer", entry.getAnswer());
                 contentValues.put("sequenceid", entry.getSequenceId());
                 contentValues.put("ear", 0);
-                contentValues.put("catchtrial", entry.getCatchTrial());
+                contentValues.put("catchtrial", entry.isCatchTrial());
                 db.insert("TBLTESTENTRIES", null, contentValues);
             }
         }
@@ -57,7 +57,7 @@ public class TestDAO {
                 contentValues.put("answer", entry.getAnswer());
                 contentValues.put("sequenceid", entry.getSequenceId());
                 contentValues.put("ear", 1);
-                contentValues.put("catchtrial", entry.getCatchTrial());
+                contentValues.put("catchtrial", entry.isCatchTrial());
                 db.insert("TBLTESTENTRIES", null, contentValues);
             }
         }

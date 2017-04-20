@@ -1,8 +1,8 @@
-package student.sdu.hearingscreening.dataclasses;
+package student.sdu.hearingscreening.resultAnalysis;
 
 import student.sdu.hearingscreening.databasemanagement.ResultManager;
-import student.sdu.hearingscreening.translators.ITranslator;
-import student.sdu.hearingscreening.translators.SennheiserHDA200Translator;
+import student.sdu.hearingscreening.dataclasses.Result;
+import student.sdu.hearingscreening.resultAnalysis.ComparativeAnalyzer;
 
 /**
  * Created by Chris on 10-04-2017.
@@ -15,7 +15,6 @@ public class TestResultAnalyser
     private Result[] newLeftEarResult;
     private Result[] newRightEarResult;
     private int freqNo;
-    private boolean isAnalysed;
 
     private float[] comparativeResultLeft;
     private float[] comparativeResultRight;
@@ -23,12 +22,12 @@ public class TestResultAnalyser
     private String recommendation;
     private String normativeResponse;
 
-    private ITranslator translator;
-
+    /**
+     * Creates a TestResultAnalyser which will analyze the newest test result with the oldest and normative threshold values.
+     */
     public TestResultAnalyser()
     {
         freqNo = 0;
-        isAnalysed = false;
         comparativeResultLeft = new float[8];
         comparativeResultRight = new float[8];
         comparativeResponse = "No comparison done";
@@ -36,9 +35,14 @@ public class TestResultAnalyser
         initBaseEarResults();
         initNewestEarResults();
     }
+
+    /**
+     * Creates Creates a TestResultAnalyser which will analyze the test with the given test number,
+     * compare its result with the oldest and normative threshold values.
+     * @param testNo
+     */
     public TestResultAnalyser(int testNo) {
         freqNo = 0;
-        isAnalysed = false;
         comparativeResultLeft = new float[8];
         comparativeResultRight = new float[8];
         comparativeResponse = "No comparison done";
@@ -47,7 +51,9 @@ public class TestResultAnalyser
         initEarResults(testNo);
     }
 
-
+    /**
+     * Uses the ResultManager class to get test results for the oldest test in the database.
+     */
     private void initBaseEarResults()
     {
         ResultManager rm = new ResultManager();
@@ -55,12 +61,20 @@ public class TestResultAnalyser
         baseRightEarResult = rm.getBaseResultsForAnalysis(1);
     }
 
+    /**
+     * Uses the ResultManager class to get test results for the newest test in the database.
+     */
     private void initNewestEarResults()
     {
         ResultManager rm = new ResultManager();
         newLeftEarResult = rm.getLatestResultsForAnalysis(0);
         newRightEarResult = rm.getLatestResultsForAnalysis(1);
     }
+
+    /**
+     * Uses the ResultManager class to get the test results corresponding to the given test number
+     * @param testNo
+     */
     private void initEarResults(int testNo)
     {
         ResultManager rm = new ResultManager();
@@ -68,17 +82,25 @@ public class TestResultAnalyser
         newRightEarResult = rm.getSpecificResultsForAnalysis(testNo, 1);
     }
 
+    /**
+     * Analyse the test results, creating a response to a comparison on the users test results (comparativeResponse),
+     * a comparison against the norm (normativeResponse), and a recommendation for the user, that can be gotten with
+     * the corresponding get methods().
+     */
     public void analyseResult()
     {
         ResultManager rm = new ResultManager();
+        System.out.println("I will now check if comparison is possible");
         if(rm.checkIfComparisonPossible()) {
+            System.out.println("Comparison was possible, will now enter for loop");
             for (freqNo = 0; freqNo < 7; freqNo++) {
+                System.out.println("In the for loop at freq: " + freqNo);
                 comparativeResultLeft[freqNo] = baseLeftEarResult[freqNo].getThreshold() - newLeftEarResult[freqNo].getThreshold();
                 comparativeResultRight[freqNo] = baseRightEarResult[freqNo].getThreshold() - newRightEarResult[freqNo].getThreshold();
                 System.out.println(comparativeResultLeft[freqNo]);
                 System.out.println(comparativeResultRight[freqNo]);
             }
-
+            System.out.println("Now calling make comparativeResponse and Recommendation");
             makeComparativeResponseAndRecommendation();
         } else {
             comparativeResponse = "Ingen sammenligning mulig...";
@@ -89,16 +111,17 @@ public class TestResultAnalyser
         } else {
             normativeResponse = "Tag en test for at få en normativ evaluering...";
         }
-            isAnalysed = true;
     }
 
-
+    /**
+     *
+     */
     private void makeComparativeResponseAndRecommendation()
     {
         ComparativeAnalyzer leftAnalysis = new ComparativeAnalyzer(comparativeResultLeft);
         ComparativeAnalyzer rightAnalysis = new ComparativeAnalyzer(comparativeResultRight);
 
-        // // TODO: 10-04-2017 See ComparativeAnalyzer class
+        // TODO: 10-04-2017 See ComparativeAnalyzer class
         if (leftAnalysis.getSame() == 8 && rightAnalysis.getSame() == 8)
         {
             comparativeResponse = "Der er ingen ændring i din hørelse";
@@ -154,9 +177,28 @@ public class TestResultAnalyser
                     "bør du kontakte din læge snarest." +
                     "\nHvis dette er første gang du ser denne ændring, bedes du gentage testen.";
         }
+        else if (leftAnalysis.getNegative() > 0 || rightAnalysis.getNegative() > 0)
+        {
+            comparativeResponse = "Der er en lille ændring i dine nye resultater på:\n";
+            if (leftAnalysis.getNegative() > 0)
+            {
+                comparativeResponse += "Venstre øret:\n" + leftAnalysis.getNegativeRes();
+            }
+            if (rightAnalysis.getNegative() > 0)
+            {
+                comparativeResponse += "Højre øret:\n" + rightAnalysis.getNegativeRes();
+            }
+        }
+        else
+        {
+            comparativeResponse = "Jeg har forsøgt en sammenligning, men faldt uden for antagede cases";
+        }
     }
 
-    public void makeNormativeComparison() //// TODO: 10-04-2017
+    /**
+     *
+     */
+    private void makeNormativeComparison()
     {
         int leftScore = 0;
         int rightScore = 0;

@@ -1,6 +1,5 @@
 package student.sdu.hearingscreening.activities;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ExpandableListView;
@@ -12,7 +11,7 @@ import student.sdu.hearingscreening.adapters.EarlierResultsListAdapter;
 import student.sdu.hearingscreening.application.HearingScreeningApplication;
 import student.sdu.hearingscreening.databasemanagement.ResultManager;
 import student.sdu.hearingscreening.dataclasses.Test;
-import student.sdu.hearingscreening.dataclasses.TestResultAnalyser;
+import student.sdu.hearingscreening.resultAnalysis.TestResultAnalyser;
 
 public class EarlierResultsActivity extends AppCompatActivity {
     ResultManager rm = new ResultManager();

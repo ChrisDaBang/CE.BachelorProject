@@ -24,11 +24,8 @@ public class HearingScreeningApplication extends Application {
     public static void setMusicStreamVolumeMax()
     {
         Context context = getContext();
-        //Get an instance of AudioManager, could be done without using the specific context
         AudioManager audio = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
         int maxVolume = audio.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-//        float percent = 0.5f;
-//        int fiftyVolume = (int) (maxVolume*percent);
         audio.setStreamVolume(AudioManager.STREAM_MUSIC, maxVolume, 0);
     }
 
@@ -43,6 +40,7 @@ public class HearingScreeningApplication extends Application {
         oldIntent.startActivity(mainIntent);
         oldIntent.finish();
     }
+
     public static void activityIntentSwitch(Activity newIntent, Activity oldIntent, int anim1, int anim2)
     {
         Intent mainIntent = new Intent(getContext(), newIntent.getClass());

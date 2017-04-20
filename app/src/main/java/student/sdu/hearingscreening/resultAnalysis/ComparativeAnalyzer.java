@@ -1,4 +1,4 @@
-package student.sdu.hearingscreening.dataclasses;
+package student.sdu.hearingscreening.resultAnalysis;
 
 /**
  * Created by Chris on 10-04-2017.
@@ -21,7 +21,7 @@ public class ComparativeAnalyzer
 
     private void analyze(float[] comparativeResultArray)
     {
-        for (int freqNo = 0; freqNo<7; freqNo++)
+        for (int freqNo = 0; freqNo <= 7; freqNo++)
         {
             float res = comparativeResultArray[freqNo];
             if (res == 0)
