@@ -58,14 +58,5 @@ public class MainMenuActivity extends AppCompatActivity {
                 HearingScreeningApplication.activityIntentSwitch(new DBTestActivity(), MainMenuActivity.this);
             }
         });
-
-        btn = (Button) findViewById(R.id.btn_barchart);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                HearingScreeningApplication.activityIntentSwitch(new UserBarchartActivity(), MainMenuActivity.this);
-            }
-        });
     }
 }

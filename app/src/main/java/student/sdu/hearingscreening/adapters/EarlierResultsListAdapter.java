@@ -3,11 +3,15 @@ package student.sdu.hearingscreening.adapters;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
+
+import com.github.mikephil.charting.charts.BarChart;
 
 import student.sdu.hearingscreening.R;
 

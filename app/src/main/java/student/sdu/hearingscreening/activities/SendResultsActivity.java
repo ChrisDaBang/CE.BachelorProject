@@ -58,23 +58,23 @@ public class SendResultsActivity extends AppCompatActivity {
                 // TODO Auto-generated method stub
                 String selected = "";
                 int cntChoice = lv.getCount();
+                ArrayList<Integer> testsChosen = new ArrayList();
 
                 SparseBooleanArray sparseBooleanArray = lv.getCheckedItemPositions();
 
                 for(int i = 0; i < cntChoice; i++){
 
                     if(sparseBooleanArray.get(i)) {
-
+                        testsChosen.add(i+1);
                         selected += lv.getItemAtPosition(i).toString() + "\n";
                     }
                 }
-
-                selected += "will be sent";
-                Toast.makeText(SendResultsActivity.this,
-
-                        selected,
-
-                        Toast.LENGTH_LONG).show();
+                HearingScreeningApplication.testsChosen = testsChosen;
+                if(testsChosen.size() != 0) {
+                    HearingScreeningApplication.activityIntentSwitch(new AudiometricChartActivity(), SendResultsActivity.this);
+                } else {
+                    Toast.makeText(HearingScreeningApplication.getContext(), "Ingen tests valgt", Toast.LENGTH_SHORT);
+                }
             }});
 
         Button markAllBtn = (Button) findViewById(R.id.btn_mark_all);

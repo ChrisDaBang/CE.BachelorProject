@@ -1,22 +1,13 @@
-package student.sdu.hearingscreening.activities;
+package student.sdu.hearingscreening.adapters;
 
-import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
-import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.CombinedChart;
-import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.ScatterChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.CombinedData;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -26,72 +17,45 @@ import com.github.mikephil.charting.data.ScatterDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
 import java.util.ArrayList;
-import java.util.Random;
 
+import student.sdu.hearingscreening.application.HearingScreeningApplication;
+import student.sdu.hearingscreening.databasemanagement.ResultManager;
 import student.sdu.hearingscreening.dataclasses.Result;
 
-import student.sdu.hearingscreening.R;
-import student.sdu.hearingscreening.databasemanagement.ResultManager;
+/**
+ * Created by Bogs on 27-04-2017.
+ */
 
-public class UserBarchartActivity extends AppCompatActivity {
-    private CombinedChart cc;
-    private ResultManager rm;
-    private ArrayList<String> xAxisLabels;
+public class ChartMaker {
+    ResultManager rm = new ResultManager();
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_barchart);
-        cc = (CombinedChart) findViewById(R.id.bc_user_barchart);
-        rm = new ResultManager();
-        testbc();
-    }
-
-    private void testbc() {
-        LineData ld = new LineData();
-        ScatterData sd = new ScatterData();
-        ArrayList<Result> results = rm.getLatestResults(0);
-        initializeXLabels(results);
-        addReferenceLines();
-        ArrayList<Entry> lineEntries = new ArrayList();
-        for(Result r : results) {
-            lineEntries.add(new Entry(r.getFrequencyId(), r.getThreshold()));
+    public void getAudioMetricChartFromData(CombinedChart cc, int testno) {
+        cc.clear();
+        Result[] left = rm.getSpecificResultsForAnalysis(testno, 0);
+        Result[] right = rm.getSpecificResultsForAnalysis(testno, 1);
+        ArrayList<Entry> lineEntriesLeft = new ArrayList();
+        ArrayList<Entry> lineEntriesRight = new ArrayList();
+        ArrayList<Result> labelList = new ArrayList();
+        for(Result r : left) {
+            lineEntriesLeft.add(new Entry(r.getFrequencyId(), r.getThreshold()));
+            labelList.add(r);
         }
-        LineDataSet lds = new LineDataSet(lineEntries, "Venstre øre");
-        lds.setColor(Color.BLACK);
-        lds.setDrawCircles(false);
-        lds.setDrawValues(false);
-        ld.addDataSet(lds);
-        ScatterDataSet scd = new ScatterDataSet(lineEntries, "Venstre øre");
-        scd.setColor(Color.BLACK);
-        scd.setScatterShape(ScatterChart.ScatterShape.CIRCLE);
-        scd.setScatterShapeHoleRadius(5f);
-        scd.setScatterShapeHoleColor(Color.WHITE);
-        scd.setValueTextColor(Color.RED);
-        sd.addDataSet(scd);
+        for(Result r : right) {
+            lineEntriesRight.add(new Entry(r.getFrequencyId(), r.getThreshold()));
+            labelList.add(r);
+        }
+        ScatterData sd = new ScatterData();
+        sd.addDataSet(getScatterDataLeft(lineEntriesLeft));
+        sd.addDataSet(getScatterDataRight(lineEntriesRight));
+        LineData ld = new LineData();
+        ld.addDataSet(getLineData(lineEntriesLeft));
+        ld.addDataSet(getLineData(lineEntriesRight));
+        initializeXLabels(labelList, cc);
+        addReferenceLines(cc);
         CombinedData cd = new CombinedData();
         cd.setDrawValues(true);
-        cd.addDataSet(lds);
-        cd.addDataSet(scd);
-
-        results = rm.getLatestResults(1);
-        lineEntries = new ArrayList();
-        for(Result r : results) {
-            lineEntries.add(new Entry(r.getFrequencyId(), r.getThreshold()));
-        }
-        lds = new LineDataSet(lineEntries, "Højre øre");
-        lds.setColor(Color.BLACK);
-        lds.setDrawCircles(false);
-        lds.setDrawValues(false);
-        ld.addDataSet(lds);
-        scd = new ScatterDataSet(lineEntries, "Højre øre");
-        scd.setScatterShape(ScatterChart.ScatterShape.X);
-        scd.setColor(Color.BLACK);
-        scd.setValueTextColor(Color.RED);
-        sd.addDataSet(scd);
         cd.setData(ld);
         cd.setData(sd);
-        System.out.println(cd.getEntryCount());
         cc.setData(cd);
         cc.setScaleMinima(1f, 1f);
         cc.getLegend().setEnabled(false);
@@ -100,18 +64,37 @@ public class UserBarchartActivity extends AppCompatActivity {
         cc.getAxisLeft().setAxisMinimum(-10f);
         cc.getAxisLeft().setInverted(true);
     }
-    @Override
-    public void onBackPressed()
-    {
-        Intent mainIntent = new Intent(getApplicationContext(), MainMenuActivity.class);
-        UserBarchartActivity.this.startActivity(mainIntent);
-        UserBarchartActivity.this.finish();
-    }
 
-    private void initializeXLabels(ArrayList<Result> results) {
-        xAxisLabels = new ArrayList();
+    private LineDataSet getLineData(ArrayList<Entry> lineEntries) {
+        LineDataSet lds = new LineDataSet(lineEntries, "Venstre øre");
+        lds.setColor(Color.BLACK);
+        lds.setDrawCircles(false);
+        lds.setDrawValues(false);
+        return lds;
+    }
+    private ScatterDataSet getScatterDataLeft(ArrayList<Entry> lineEntries) {
+        ScatterDataSet scd = new ScatterDataSet(lineEntries, "Venstre øre");
+        scd.setColor(Color.BLACK);
+        scd.setScatterShape(ScatterChart.ScatterShape.CIRCLE);
+        scd.setScatterShapeHoleRadius(5f);
+        scd.setScatterShapeHoleColor(Color.WHITE);
+        scd.setValueTextColor(Color.RED);
+        return scd;
+    }
+    private ScatterDataSet getScatterDataRight(ArrayList<Entry> lineEntries) {
+        ScatterDataSet scd = new ScatterDataSet(lineEntries, "Højre øre");
+        scd.setScatterShape(ScatterChart.ScatterShape.X);
+        scd.setColor(Color.BLACK);
+        scd.setValueTextColor(Color.RED);
+        return scd;
+    }
+    private void configChart() {
+
+    }
+    private void initializeXLabels(ArrayList<Result> results, CombinedChart cc) {
+        final ArrayList<String> xAxisLabels = new ArrayList();
         for(Result r : results) {
-         xAxisLabels.add(r.getFrequencyId(), r.getFrequency() + "hz");
+            xAxisLabels.add(r.getFrequencyId(), r.getFrequency() + "hz");
         }
         XAxis xAxis = cc.getXAxis();
         xAxis.setGranularity(1f);
@@ -122,7 +105,7 @@ public class UserBarchartActivity extends AppCompatActivity {
             }
         });
     }
-    private void addReferenceLines() {
+    private void addReferenceLines(CombinedChart cc) {
         YAxis yAxis = cc.getAxisLeft();
         LimitLine l = new LimitLine(0f, "Normal hørelse");
         l.setLineWidth(1f);
