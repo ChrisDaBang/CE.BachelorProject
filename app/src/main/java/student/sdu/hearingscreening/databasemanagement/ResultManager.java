@@ -72,6 +72,7 @@ public class ResultManager {
                 res.moveToNext();
             }
         }
+        res.close();
         return latest;
     }
 

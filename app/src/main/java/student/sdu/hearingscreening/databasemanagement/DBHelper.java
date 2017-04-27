@@ -16,7 +16,6 @@ import student.sdu.hearingscreening.R;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    boolean isCreating = false;
     SQLiteDatabase currentDB = null;
 
     private static String DB_NAME = "HEARINGSCREENING";
@@ -104,31 +103,6 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * todo
-     * @return
-     */
-    public boolean insertDummy() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("date", new Date().toString());
-        db.insert("TBLTEST", null, contentValues);
-        return true;
-    }
-
-    /**
-     * todo
-     * @return
-     */
-    public String getDummy() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery("SELECT * FROM TBLTEST", null);
-        res.moveToFirst();
-        String result = res.getString(res.getColumnIndex("testid"));
-        return result += res.getString(res.getColumnIndex("date"));
-
-    }
-
-    /**
      * checks if initial values are set up
      */
     private boolean checkIfInitialized() {
@@ -175,140 +149,5 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("firsttime", true);
         contentValues.put("doctor", "Hans Hansen");
         db.insert("TBLSETTINGS", null, contentValues);
-    }
-
-    public void testResults() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-        cv.put("testid", 1);
-        cv.put("date", "11-11-11");
-        db.insert("TBLTEST", null, cv);
-        cv = new ContentValues();
-        cv.put("resultid", 1);
-        cv.put("testid", 1);
-        cv.put("threshold", 10);
-        cv.put("freqid", 0);
-        cv.put("ear", 0);
-        db.insert("TBLRESULT", null, cv);
-
-        cv = new ContentValues();
-        cv.put("resultid", 2);
-        cv.put("testid", 1);
-        cv.put("threshold", 10);
-        cv.put("freqid", 1);
-        cv.put("ear", 0);
-        db.insert("TBLRESULT", null, cv);
-
-        cv = new ContentValues();
-        cv.put("resultid", 3);
-        cv.put("testid", 1);
-        cv.put("threshold", 10);
-        cv.put("freqid", 2);
-        cv.put("ear", 0);
-        db.insert("TBLRESULT", null, cv);
-
-        cv = new ContentValues();
-        cv.put("resultid", 4);
-        cv.put("testid", 1);
-        cv.put("threshold", 10);
-        cv.put("freqid", 3);
-        cv.put("ear", 0);
-        db.insert("TBLRESULT", null, cv);
-
-        cv = new ContentValues();
-        cv.put("resultid", 5);
-        cv.put("testid", 1);
-        cv.put("threshold", 10);
-        cv.put("freqid", 4);
-        cv.put("ear", 0);
-        db.insert("TBLRESULT", null, cv);
-
-        cv = new ContentValues();
-        cv.put("resultid", 6);
-        cv.put("testid", 1);
-        cv.put("threshold", 10);
-        cv.put("freqid", 5);
-        cv.put("ear", 0);
-        db.insert("TBLRESULT", null, cv);
-
-        cv = new ContentValues();
-        cv.put("resultid", 7);
-        cv.put("testid", 1);
-        cv.put("threshold", 10);
-        cv.put("freqid", 6);
-        cv.put("ear", 0);
-        db.insert("TBLRESULT", null, cv);
-
-        cv = new ContentValues();
-        cv.put("resultid", 8);
-        cv.put("testid", 1);
-        cv.put("threshold", 10);
-        cv.put("freqid", 7);
-        cv.put("ear", 0);
-        db.insert("TBLRESULT", null, cv);
-
-        cv = new ContentValues();
-        cv.put("resultid", 9);
-        cv.put("testid", 1);
-        cv.put("threshold", 10);
-        cv.put("freqid", 0);
-        cv.put("ear", 1);
-        db.insert("TBLRESULT", null, cv);
-
-        cv = new ContentValues();
-        cv.put("resultid", 10);
-        cv.put("testid", 1);
-        cv.put("threshold", 10);
-        cv.put("freqid", 1);
-        cv.put("ear", 1);
-        db.insert("TBLRESULT", null, cv);
-
-        cv = new ContentValues();
-        cv.put("resultid", 11);
-        cv.put("testid", 1);
-        cv.put("threshold", 10);
-        cv.put("freqid", 2);
-        cv.put("ear", 1);
-        db.insert("TBLRESULT", null, cv);
-
-        cv = new ContentValues();
-        cv.put("resultid", 12);
-        cv.put("testid", 1);
-        cv.put("threshold", 10);
-        cv.put("freqid", 3);
-        cv.put("ear", 1);
-        db.insert("TBLRESULT", null, cv);
-
-        cv = new ContentValues();
-        cv.put("resultid", 13);
-        cv.put("testid", 1);
-        cv.put("threshold", 10);
-        cv.put("freqid", 4);
-        cv.put("ear", 1);
-        db.insert("TBLRESULT", null, cv);
-
-        cv = new ContentValues();
-        cv.put("resultid", 14);
-        cv.put("testid", 1);
-        cv.put("threshold", 10);
-        cv.put("freqid", 5);
-        cv.put("ear", 1);
-        db.insert("TBLRESULT", null, cv);
-
-        cv = new ContentValues();
-        cv.put("resultid", 15);
-        cv.put("testid", 1);
-        cv.put("threshold", 10);
-        cv.put("freqid", 6);
-        cv.put("ear", 1);
-        db.insert("TBLRESULT", null, cv);
-
-        cv = new ContentValues();
-        cv.put("resultid", 16);
-        cv.put("testid", 1);
-        cv.put("threshold", 10);
-        cv.put("freqid", 7);
-        cv.put("ear", 1);
-        db.insert("TBLRESULT", null, cv);
     }
 }

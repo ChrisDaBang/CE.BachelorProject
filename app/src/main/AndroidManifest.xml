@@ -27,12 +27,12 @@
         <activity android:name=".activities.DBTestActivity" />
         <activity android:name=".activities.CalibrateCheckActivity" />
         <activity android:name=".activities.CalibrateActivity" />
-        <activity android:name=".activities.UserBarchartActivity" />
         <activity android:name=".activities.VolumeTestActivity" />
         <activity android:name=".activities.HowTo3Activity" />
         <activity android:name=".activities.HowTo4Activity" />
         <activity android:name=".activities.HowTo5Activity" />
-        <activity android:name=".activities.HowTo6Activity"></activity>
+        <activity android:name=".activities.HowTo6Activity" />
+        <activity android:name=".activities.AudiometricChartActivity"></activity>
     </application>
 
 </manifest>

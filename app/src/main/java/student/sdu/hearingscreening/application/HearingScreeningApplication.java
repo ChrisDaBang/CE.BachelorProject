@@ -6,6 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 /**
  * Created by Bogs on 16-03-2017.
  */
@@ -13,6 +16,7 @@ import android.media.AudioManager;
 public class HearingScreeningApplication extends Application {
 
     private static HearingScreeningApplication  instance;
+    public static ArrayList<Integer> testsChosen;
     public HearingScreeningApplication()
     {
         instance = this;
