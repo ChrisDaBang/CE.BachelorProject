@@ -93,7 +93,7 @@ public class TestResultAnalyser
         System.out.println("I will now check if comparison is possible");
         if(rm.checkIfComparisonPossible()) {
             System.out.println("Comparison was possible, will now enter for loop");
-            for (freqNo = 0; freqNo < 7; freqNo++) {
+            for (freqNo = 0; freqNo <= 7; freqNo++) {
                 System.out.println("In the for loop at freq: " + freqNo);
                 comparativeResultLeft[freqNo] = baseLeftEarResult[freqNo].getThreshold() - newLeftEarResult[freqNo].getThreshold();
                 comparativeResultRight[freqNo] = baseRightEarResult[freqNo].getThreshold() - newRightEarResult[freqNo].getThreshold();
