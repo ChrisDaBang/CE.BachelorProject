@@ -41,7 +41,7 @@ public class HowTo6Activity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        HearingScreeningApplication.activityIntentSwitch(new HowTo5Activity(), HowTo6Activity.this, R.anim.push_right_out, R.anim.push_right_in2);
+        HearingScreeningApplication.activityIntentSwitch(new MainMenuActivity(), HowTo6Activity.this, R.anim.push_right_out, R.anim.push_right_in2);
     }
 
     @Override
