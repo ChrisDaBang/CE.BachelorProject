@@ -48,7 +48,7 @@ public class ComparativeAnalyzer
                     worrysomeNegativeRes += "Frekvens " +freqNo+ " hørte du betydeligt dårlige med " + res + " db.\n";
                 }
             }
-            else {} //We fucked up
+            else {} //Something went wrong
         }
     }
 

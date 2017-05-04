@@ -90,7 +90,7 @@ public class OneUpTwoDownTest
                 testDTO.addResultRightEar(testFreqNo, dbhl);
                 testFreqNo++;
                 ear = 0;
-                currentlyInCatchTrial = false;
+                currentlyInCatchTrial = false;  
             }
             else //after a left ear test, go to right ear.
             {
@@ -168,22 +168,6 @@ public class OneUpTwoDownTest
         return  ear;
     }
 
-    /**
-     * For quick database testing only
-     */
-    public void testTest() {
-        for(int i = 0; i<16; i++) {
-            answer(true);
-            answer(false);
-            answer(false);
-            answer(true);
-            answer(false);
-            answer(false);
-            answer(true);
-        }
-        testDAO.saveTest(testDTO);
-
-    }
 
     /**
      * Will be empty if no calibration data could be found in the database.

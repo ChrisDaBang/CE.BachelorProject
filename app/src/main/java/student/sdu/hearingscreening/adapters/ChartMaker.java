@@ -63,6 +63,7 @@ public class ChartMaker {
         cc.getAxisLeft().setAxisMaximum(110f);
         cc.getAxisLeft().setAxisMinimum(-10f);
         cc.getAxisLeft().setInverted(true);
+        cc.getAxisRight().setDrawLabels(false);
     }
 
     private LineDataSet getLineData(ArrayList<Entry> lineEntries) {
@@ -87,9 +88,6 @@ public class ChartMaker {
         scd.setColor(Color.BLACK);
         scd.setValueTextColor(Color.RED);
         return scd;
-    }
-    private void configChart() {
-
     }
     private void initializeXLabels(ArrayList<Result> results, CombinedChart cc) {
         final ArrayList<String> xAxisLabels = new ArrayList();
