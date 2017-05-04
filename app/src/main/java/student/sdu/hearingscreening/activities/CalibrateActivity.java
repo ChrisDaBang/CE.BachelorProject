@@ -110,9 +110,7 @@ public class CalibrateActivity extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        Intent mainIntent = new Intent(getApplicationContext(), SettingsActivity.class);
-        CalibrateActivity.this.startActivity(mainIntent);
-        CalibrateActivity.this.finish();
+        HearingScreeningApplication.activityIntentSwitch(new SettingsActivity(), CalibrateActivity.this);
     }
 
     /**

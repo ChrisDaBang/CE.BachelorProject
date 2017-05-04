@@ -71,9 +71,7 @@ public class HowToActivity extends AppCompatActivity {
                     else
                     {
                         HearingScreeningApplication.activityIntentSwitch(new HowTo2Activity(), HowToActivity.this, R.anim.push_right_in, R.anim.push_right_out2);
-
                     }
-
                 }
                 else
                 {
