@@ -48,8 +48,8 @@ public class ChartMaker {
         sd.addDataSet(getScatterDataLeft(lineEntriesLeft));
         sd.addDataSet(getScatterDataRight(lineEntriesRight));
         LineData ld = new LineData();
-        ld.addDataSet(getLineData(lineEntriesLeft));
-        ld.addDataSet(getLineData(lineEntriesRight));
+        ld.addDataSet(getLineData(lineEntriesLeft, 0));
+        ld.addDataSet(getLineData(lineEntriesRight, 1));
         initializeXLabels(labelList, cc);
         addReferenceLines(cc);
         CombinedData cd = new CombinedData();
@@ -66,26 +66,35 @@ public class ChartMaker {
         cc.getAxisRight().setDrawLabels(false);
     }
 
-    private LineDataSet getLineData(ArrayList<Entry> lineEntries) {
-        LineDataSet lds = new LineDataSet(lineEntries, "Venstre øre");
-        lds.setColor(Color.BLACK);
+    private LineDataSet getLineData(ArrayList<Entry> lineEntries, int ear) {
+        String datasetName ="";
+        int color = Color.BLACK;
+        if(ear==1) {
+            datasetName ="Højre øre";
+            color = Color.RED;
+        } else {
+            datasetName ="Venstre øre";
+            color = Color.BLUE;
+        }
+        LineDataSet lds = new LineDataSet(lineEntries, datasetName);
+        lds.setColor(color);
         lds.setDrawCircles(false);
         lds.setDrawValues(false);
         return lds;
     }
     private ScatterDataSet getScatterDataLeft(ArrayList<Entry> lineEntries) {
         ScatterDataSet scd = new ScatterDataSet(lineEntries, "Venstre øre");
-        scd.setColor(Color.BLACK);
-        scd.setScatterShape(ScatterChart.ScatterShape.CIRCLE);
-        scd.setScatterShapeHoleRadius(5f);
-        scd.setScatterShapeHoleColor(Color.WHITE);
-        scd.setValueTextColor(Color.RED);
+        scd.setColor(Color.BLUE);
+        scd.setScatterShape(ScatterChart.ScatterShape.X);
+        scd.setValueTextColor(Color.BLUE);
         return scd;
     }
     private ScatterDataSet getScatterDataRight(ArrayList<Entry> lineEntries) {
         ScatterDataSet scd = new ScatterDataSet(lineEntries, "Højre øre");
-        scd.setScatterShape(ScatterChart.ScatterShape.X);
-        scd.setColor(Color.BLACK);
+        scd.setScatterShape(ScatterChart.ScatterShape.CIRCLE);
+        scd.setColor(Color.RED);
+        scd.setScatterShapeHoleColor(Color.TRANSPARENT);
+        scd.setScatterShapeHoleRadius(5f);
         scd.setValueTextColor(Color.RED);
         return scd;
     }
