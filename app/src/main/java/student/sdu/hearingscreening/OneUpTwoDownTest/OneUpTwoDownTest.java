@@ -90,7 +90,7 @@ public class OneUpTwoDownTest
                 testDTO.addResultRightEar(testFreqNo, dbhl);
                 testFreqNo++;
                 ear = 0;
-                currentlyInCatchTrial = false;  
+                currentlyInCatchTrial = false;
             }
             else //after a left ear test, go to right ear.
             {
