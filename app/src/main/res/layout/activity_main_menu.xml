@@ -60,4 +60,13 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/btn_settings"
         android:text="Database test" />
+
+    <Button
+        android:id="@+id/btn_volumetest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Volume test"
+        android:layout_alignBottom="@+id/btn_dbtest"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/btn_settings" />
 </RelativeLayout>

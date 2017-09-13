@@ -58,5 +58,12 @@ public class MainMenuActivity extends AppCompatActivity {
                 HearingScreeningApplication.activityIntentSwitch(new DBTestActivity(), MainMenuActivity.this);
             }
         });
+        btn = (Button) findViewById(R.id.btn_volumetest);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HearingScreeningApplication.activityIntentSwitch(new VolumeTestActivity(), MainMenuActivity.this);
+            }
+        });
     }
 }
