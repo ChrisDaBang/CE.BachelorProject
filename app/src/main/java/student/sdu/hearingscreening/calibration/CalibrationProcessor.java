@@ -57,6 +57,7 @@ public class CalibrationProcessor
     private boolean saveDataToDataBase()
     {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.delete("TBLCALIBRATION",null,null); //Clears the table of contents, for when a new calibration is done.
         for (int i = 0; i < frequencyAtMax.size(); i++)
         {
             ContentValues cv = new ContentValues();

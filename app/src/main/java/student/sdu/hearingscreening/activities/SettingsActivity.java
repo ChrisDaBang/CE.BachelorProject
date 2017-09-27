@@ -25,12 +25,12 @@ public class SettingsActivity extends AppCompatActivity {
                 HearingScreeningApplication.activityIntentSwitch(new CalibrateActivity(), SettingsActivity.this);
             }
         });
-        btn = (Button) findViewById(R.id.btn_volumetest);
+        btn = (Button) findViewById(R.id.btn_calibrationData);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                HearingScreeningApplication.activityIntentSwitch(new VolumeTestActivity(), SettingsActivity.this);
+                HearingScreeningApplication.activityIntentSwitch(new CalibrationDataActivity(), SettingsActivity.this);
             }
         });
     }
