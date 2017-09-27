@@ -69,7 +69,7 @@ public class OneUpTwoDownTest
     private boolean checkThreeHits(Boolean response)
     {
         boolean testOver = false;
-        //Get entries for current DB Hearing Level (dbhl), count the amount of positive responses
+        //Get entries for current DB Level (dbhl), count the amount of positive responses. (should be refactored to dbspl)
         int positiveResponses = 0;
         for(TestEntry entry : entries)
         {
